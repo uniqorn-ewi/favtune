@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.3.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -29,6 +30,21 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '3.1.11'
+
+gem 'dotenv-rails'
+
+gem 'carrierwave', '~> 1.0'
+
+group :development, :test do
+  gem 'mini_magick'
+end
+
+group :production do
+  gem 'cloudinary'
+end
+
+gem 'file_validators'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -39,6 +55,12 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  # pryをRailsコンソールで使用
+  gem 'pry-rails'
+  # Hirb （データを表形式で表示）
+  gem 'hirb'
+  gem 'hirb-unicode'
+
 end
 
 group :development do
@@ -48,6 +70,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :development do
+  gem 'letter_opener_web'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

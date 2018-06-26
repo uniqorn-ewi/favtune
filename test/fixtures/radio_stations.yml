@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  callsign: MyString
+  city: MyString
+  branding: MyString
+  station_format: MyString
+  webcast_url: MyString
+  website: MyString
+  comment: MyString
+  user: one
+
+two:
+  callsign: MyString
+  city: MyString
+  branding: MyString
+  station_format: MyString
+  webcast_url: MyString
+  website: MyString
+  comment: MyString
+  user: two
