@@ -17,7 +17,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light affix" id="mainNav">
       <div class="container">
-        <%= link_to "Favtune", '/', class: 'navbar-brand nav-logo' %>
+        <%= link_to "Favtune", root_path, class: 'navbar-brand nav-logo' %>
 
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -25,37 +25,27 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-<!--
-<#% if logged_in? %>
- -->
+<% if logged_in? %>
             <li class="nav-item">
               <%= link_to "Shared stations", radio_stations_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "Post station", new_radio_station_path, class: 'nav-link' %>
             </li>
-
-<!--
             <li class="nav-item">
-              <%%= link_to "Your profile", user_path(current_user.id), class: 'nav-link' %>
+              <%= link_to "Your profile", user_path(current_user.id), class: 'nav-link' %>
             </li>
             <li class="nav-item">
-              <#%= link_to "Sign out", session_path(current_user.id), class: 'nav-link', method: :delete %>
+              <%= link_to "Sign out", session_path(current_user.id), class: 'nav-link', method: :delete %>
             </li>
- -->
-
-<!--
-<#% else %>
- -->
+<% else %>
             <li class="nav-item">
               <%= link_to "Sign in", new_session_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "Sign up", new_user_path, class: 'nav-link' %>
             </li>
-<!--
-<#% end %>
- -->
+<% end %>
           </ul>
         </div>
       </div>
