@@ -1,78 +1,76 @@
 class RadioStationsController < ApplicationController
-# before_action :set_radio_station, only: [:show, :edit, :update, :destroy]
+  before_action :set_radio_station, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:new, :edit, :show, :destroy]
 
   def top
     render 'top'
   end
 
-  # GET /radio_stations
   def index
-  # @radio_stations = RadioStation.all
+  # @radio_stations = RadioStation.order(:updated_at)
+ ## render 'index'
   end
 
-  # GET /radio_stations/1
-  def show
-  end
-
-  # GET /radio_stations/new
   def new
-  # @radio_station = RadioStation.new
-  end
-
-  # GET /radio_stations/1/edit
-  def edit
+ ## render 'new'
+#   if params[:back]
+#     @radio_station = RadioStation.new(radio_station_params)
+#   else
+#     @radio_station = RadioStation.new
+#     @radio_station.user_id = current_user.id
+#   end
   end
 
   def confirm
-  # @picture = Picture.new(picture_params)
-  # render 'new' if @picture.invalid?
+  # @radio_station = RadioStation.new(radio_station_params)
+  # render 'new' if @radio_station.invalid?
   end
 
-  # POST /radio_stations
   def create
   # @radio_station = RadioStation.new(radio_station_params)
-  # 
-  # respond_to do |format|
-  #   if @radio_station.save
+#   if @radio_station.save
+#     redirect_to radio_stations_path, notice: "ブログを作成しました！"
   #     format.html { redirect_to @radio_station, notice: 'Radio station was successfully created.' }
-  #     format.json { render :show, status: :created, location: @radio_station }
-  #   else
-  #     format.html { render :new }
-  #     format.json { render json: @radio_station.errors, status: :unprocessable_entity }
-  #   end
-  # end
+#   else
+#     render 'new'
+#   end
   end
 
-  # PATCH/PUT /radio_stations/1
+  def show
+  # @favorite = current_user.favorites.find_by(radio_station_id: @radio_station.id)
+ ## render 'show'
+  end
+
+  def edit
+ ## render 'edit'
+  end
+
   def update
-  # respond_to do |format|
-  #   if @radio_station.update(radio_station_params)
+#   if @radio_station.update(radio_station_params)
+#     redirect_to radio_stations_path, notice: "ブログを編集しました！"
   #     format.html { redirect_to @radio_station, notice: 'Radio station was successfully updated.' }
-  #     format.json { render :show, status: :ok, location: @radio_station }
-  #   else
-  #     format.html { render :edit }
-  #     format.json { render json: @radio_station.errors, status: :unprocessable_entity }
-  #   end
-  # end
+#   else
+#     render 'edit'
+#   end
   end
 
-  # DELETE /radio_stations/1
   def destroy
   # @radio_station.destroy
-  # respond_to do |format|
+#   redirect_to radio_stations_path, notice: "ブログを削除しました！"
   #   format.html { redirect_to radio_stations_url, notice: 'Radio station was successfully destroyed.' }
-  #   format.json { head :no_content }
-  # end
   end
 
-# private
-#   # Use callbacks to share common setup or constraints between actions.
-#   def set_radio_station
-#     @radio_station = RadioStation.find(params[:id])
-#   end
-#
-#   # Never trust parameters from the scary internet, only allow the white list through.
-#   def radio_station_params
-#     params.fetch(:radio_station, {})
-#   end
+  private
+    def set_radio_station
+      @radio_station = RadioStation.find(params[:id])
+    end
+
+    def radio_station_params
+      params.require(:adio_station).permit(:user_id, \
+        :callsign, :city, :branding, :station_format, :webcast_url, :website, :comment)
+    end
+
+    def logged_in_user
+      redirect_to new_session_path unless logged_in?
+    end
 end

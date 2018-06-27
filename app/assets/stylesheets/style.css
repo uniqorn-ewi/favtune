@@ -665,4 +665,111 @@ html {
   margin-top: 0;
 }
 
+/*====================================================
+                   station-index: initial
+======================================================*/
 
+.probootstrap-section,
+.probootstrap-footer {
+  padding: 3em 0;
+  }
+  .probootstrap-section .probootstrap-heading,
+  .probootstrap-footer .probootstrap-heading {
+    font-size: 40px;
+    line-height: 1.5; }
+    @media screen and (max-width: 768px) {
+      .probootstrap-section .probootstrap-heading,
+      .probootstrap-footer .probootstrap-heading {
+        font-size: 30px; } }
+
+.probootstrap-media {
+  border: 1px solid #e6e6e6; }
+  .probootstrap-media.text-center .probootstrap-icon {
+    margin: 0 auto; }
+
+/*====================================================
+                   station-index: edulogy
+======================================================*/
+
+.row .blog-grid {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.blog-grid .col-lg-4, .blog-grid .col-md-6 {
+  margin-bottom: 30px;
+}
+
+.course-box {
+    border-radius: 6px 6px 0 0;
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+}
+
+.course-box img {
+    border-radius: 6px 6px 0 0;
+    width: 100%;
+}
+
+.course-details {
+    padding: 3rem 2rem;
+}
+
+.course-details h4 {
+    font-size: 18px;
+    padding: 0 0 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.course-box small {
+    display: block;
+    font-size: 80%;
+    margin-bottom: 10px;
+}
+
+.course-details p {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.course-footer ul {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.course-footer .list-inline {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none;
+}
+
+.course-footer .list-inline>li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.course-footer a {
+    color: #aaa;
+}
+
+.course-footer i {
+    padding-right: 3px;
+}
+
+.course-footer {
+    border-top: 1px solid #eaeaea;
+    padding: 15px;
+}
+
+.course-footer .pull-right a {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+    font-family: Arial
+}
+
+/*
+*/
