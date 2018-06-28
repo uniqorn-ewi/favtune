@@ -1,8 +1,3 @@
-<!--
-<h1>Editing Radio Station</h1>
-<#%= render 'form', radio_station: @radio_station %>
-<#%= link_to 'Show', @radio_station %> |
-<#%= link_to 'Back', radio_stations_path %>
- -->
-<!--
- -->
+<%= render partial: 'radio_stations/heading_edit', \
+           layout: 'radio_stations/form', \
+           locals: {radio_station: @radio_station} %>

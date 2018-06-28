@@ -12,18 +12,17 @@ class RadioStationsController < ApplicationController
   end
 
   def new
- ## render 'new'
-#   if params[:back]
-#     @radio_station = RadioStation.new(radio_station_params)
-#   else
-#     @radio_station = RadioStation.new
-#     @radio_station.user_id = current_user.id
-#   end
+    if params[:back]
+      @radio_station = RadioStation.new(radio_station_params)
+    else
+      @radio_station = RadioStation.new
+      @radio_station.user_id = current_user.id
+    end
   end
 
   def confirm
-  # @radio_station = RadioStation.new(radio_station_params)
-  # render 'new' if @radio_station.invalid?
+    @radio_station = RadioStation.new(radio_station_params)
+    render 'new' if @radio_station.invalid?
   end
 
   def create
@@ -66,7 +65,7 @@ class RadioStationsController < ApplicationController
     end
 
     def radio_station_params
-      params.require(:adio_station).permit(:user_id, \
+      params.require(:radio_station).permit(:user_id, \
         :callsign, :city, :branding, :station_format, :webcast_url, :website, :comment)
     end
 

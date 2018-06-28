@@ -1,20 +1,76 @@
-<!--
-<#%= form_with(model: radio_station, local: true) do |form| %>
-  <#% if radio_station.errors.any? %>
+<section id="contact">
+  <div class="container">
+<%= yield %>
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- form -->
+<%= form_with(model: radio_station, \
+              url: confirm_radio_stations_path, local: true) do |f| %>
+  <% if radio_station.errors.any? %>
     <div id="error_explanation">
-      <h2><#%= pluralize(radio_station.errors.count, "error") %> prohibited this radio_station from being saved:</h2>
+      <h6><%= pluralize(radio_station.errors.count, "error") %>:</h6>
       <ul>
-      <#% radio_station.errors.full_messages.each do |message| %>
-        <li><#%= message %></li>
-      <#% end %>
+      <% radio_station.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
       </ul>
     </div>
-  <#% end %>
-  <div class="actions">
-    <#%= form.submit %>
-  </div>
-<#% end %>
- -->
+  <% end %>
 
-<!--
- -->
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.text_field :callsign, \
+              data: {validation_required_message: "Please enter callsign of station."}, \
+              required: 'required', \
+              placeholder: "Callsign Of Station *", class: 'form-control' %>
+          <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :city, \
+              placeholder: "City Of Station *", class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :branding, \
+              placeholder: "Branding Of Station *", class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :station_format, \
+              placeholder: "Radio Format Of Station *", class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.url_field :webcast_url, \
+              data: {validation_required_message: "Please enter webcast url of station."}, \
+              required: 'required', \
+              placeholder: "Webcast URL Of Station *", class: 'form-control' %>
+          <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group">
+          <%= f.url_field :website_url, \
+              placeholder: "Website URL Of Station *", class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :comment, \
+              placeholder: "Your Comment *", class: 'form-control' %>
+        </div>
+      </div>
+<%= f.hidden_field :user_id %>
+
+      <div class="clearfix"></div>
+
+      <div class="col-lg-12 text-center">
+        <div id="success"></div>
+        <%= f.submit "Post", class: 'btn btn-primary btn-xl text-uppercase' %>
+      </div>
+
+    </div>
+<% end %>
+        <!--/form -->
+      </div>
+    </div>
+  </div>
+</section>
