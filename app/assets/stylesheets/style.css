@@ -519,6 +519,13 @@ div#error_explanation {
   color: #1400ffab;
 }
 
+.row .disp-contents {
+  /* 親から値を継承させる */
+  display: inherit;
+  /* ブラウザに理解させるために上書きする */
+  display: contents;
+}
+
 /*
 .loader {
 */

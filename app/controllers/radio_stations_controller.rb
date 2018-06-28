@@ -26,22 +26,21 @@ class RadioStationsController < ApplicationController
   end
 
   def create
-  # @radio_station = RadioStation.new(radio_station_params)
-#   if @radio_station.save
-#     redirect_to radio_stations_path, notice: "ブログを作成しました！"
-  #     format.html { redirect_to @radio_station, notice: 'Radio station was successfully created.' }
-#   else
-#     render 'new'
-#   end
+    @radio_station = RadioStation.new(radio_station_params)
+    if @radio_station.save
+#     redirect_to radio_stations_path, notice: "Radio station was successfully created."
+#     redirect_to radio_station_path, notice: "Radio station was successfully created."
+      redirect_to root_path, notice: "Radio station was successfully created."
+    else
+      render 'new'
+    end
   end
 
   def show
   # @favorite = current_user.favorites.find_by(radio_station_id: @radio_station.id)
- ## render 'show'
   end
 
   def edit
- ## render 'edit'
   end
 
   def update
