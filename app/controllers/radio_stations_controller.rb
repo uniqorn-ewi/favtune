@@ -3,7 +3,7 @@ class RadioStationsController < ApplicationController
   before_action :logged_in_user, only: [:new, :edit, :show, :destroy]
 
   def top
-    render 'top'
+    @radio_station = RadioStation.order(:updated_at).first
   end
 
   def index

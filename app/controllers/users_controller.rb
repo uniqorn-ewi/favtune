@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   # end
     
     if @user.save
-    # NotifyMailer.notify_mail(@user).deliver
+      NotifyMailer.notify_mail(@user).deliver
       redirect_to root_path, notice: "An e-mail of invitation was sent to you."
     # redirect_to root_path, notice: "You were registered as a user."
     else
