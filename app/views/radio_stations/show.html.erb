@@ -1,7 +1,81 @@
 <!--
 <p id="notice"><#%= notice %></p>
+ -->
+
+<section id="mu-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-about-area">
+          <!-- Title -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mu-title">
+                <h2><%= @radio_station.callsign %></h2>
+                <h3><%= link_to 'Listen Live This Station', \
+                       @radio_station.webcast_url, {:target => "_blank"} %></h3>
+              </div>
+            </div>
+          </div>
+          <!-- Start Feature Content -->
+          <div class="row">
+
+            <!-- div class="col-md-6">
+              <div class="mu-about-left">
+<#%= image_tag("/assets/no_image.png", width: 525, height: 433, alt: "img") %>
+              </div>
+            </div -->
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6">
+              <div class="mu-about-right">
+                <ul>
+                  <li>
+                    <h3>City:</h3>
+                    <% unless @radio_station.city.empty? %>
+                    <p><%= @radio_station.city %></p>
+                    <% end %>
+                  </li>
+                  <li>
+                    <h3>Branding:</h3>
+                    <% unless @radio_station.branding.empty? %>
+                    <p><%= @radio_station.branding %></p>
+                    <% end %>
+                  </li>
+                  <li>
+                    <h3>Radio Format:</h3>
+                    <% unless @radio_station.station_format.empty? %>
+                    <p><%= @radio_station.station_format %></p>
+                    <% end %>
+                  </li>
+                  <li>
+                    <h3>Website:</h3>
+                    <% unless @radio_station.website.empty? %>
+                    <p><%= link_to @radio_station.callsign, \
+                                   @radio_station.website, {:target => "_blank"} %></p>
+                    <% end %>
+                  </li>
+                  <li>
+                    <h3>Comment:</h3>
+                    <% unless @radio_station.comment.empty? %>
+                    <p><%= @radio_station.comment %></p>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-3"></div>
+
+          </div>
+          <!-- End Feature Content -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
 <#%= link_to 'Edit', edit_radio_station_path(@radio_station) %> |
 <#%= link_to 'Back', radio_stations_path %>
- -->
-<!--
  -->

@@ -380,7 +380,6 @@ img::-moz-selection {
 
 /*====================================================
                TITLE CONTENT (Generic)
-======================================================*/
 
     .title-bar {
         padding: 100px 0;
@@ -456,9 +455,10 @@ img::-moz-selection {
         }
     }
 
+======================================================*/
+
 /*====================================================
                COLOR (Generic)
-======================================================*/
 
     .cl-white {
         color: #fff;
@@ -498,14 +498,13 @@ img::-moz-selection {
 
     .bg-gradiant {
         background: -moz-linear-gradient(45deg, rgba(34, 155, 242, 1) 0%, rgba(0, 128, 129, 1) 99%, rgba(0, 128, 128, 1) 100%);
-        /* ff3.6+ */
         background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(34, 155, 242, 1)), color-stop(99%, rgba(0, 128, 129, 1)), color-stop(100%, rgba(0, 128, 128, 1)));
-        /* safari4+,chrome */
         background: -webkit-linear-gradient(45deg, rgba(34, 155, 242, 1) 0%, rgba(0, 128, 129, 1) 99%, rgba(0, 128, 128, 1) 100%);
-        /* safari5.1+,chrome10+ */
         background: -o-linear-gradient(45deg, rgba(34, 155, 242, 1) 0%, rgba(0, 128, 129, 1) 99%, rgba(0, 128, 128, 1) 100%);
-        /* opera 11.10+ */
     }
+
+======================================================*/
+
 
 /*====================================================
                        HOME: agency
@@ -641,14 +640,22 @@ html {
 ======================================================*/
 @media (min-width: 768px) {
   #team .row { /* height: 820px */
+/*
     padding-top: 342px;
     padding-bottom: 292px;
+*/
+    padding-top: 165px;
+    padding-bottom: 166px;
   }
 }
 @media (max-width: 767px) {
   #team .row { /* height: 652px */
     padding-top: 257px;
     padding-bottom: 207px;
+/*
+    padding-top: 165px;
+    padding-bottom: 166px;
+*/
   }
 }
 
@@ -671,6 +678,136 @@ html {
 
 .team-member p {
   margin-top: 0;
+}
+
+/*====================================================
+                   station-show: b-hero
+======================================================*/
+
+#mu-about {
+  overflow-x:hidden;
+/*font-family: 'Raleway', sans-serif;*/
+  color: #666666;
+  font-size: 16px;
+  font-weight: 400;
+  /*body*/
+
+  background-color: #fff;
+  display: inline;
+  width: 100%;
+}
+
+#mu-about ul {
+  padding: 0;
+  margin: 0;
+}
+
+#mu-about ul li {
+  font-size: 17px;
+}
+
+#mu-about img {
+  border: none;
+  max-width: 100%;
+}
+
+.mu-about-area {
+  display: inline;
+  float: left;
+  padding: 100px 0;
+  width: 100%;
+}
+
+.mu-title {
+  display: inline;
+  float: left;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 35px;
+  padding: 0 25%;
+}
+
+.mu-title h2 {
+  color: #323232;
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  font-family: inherit;
+}
+
+.mu-title p {
+  line-height: inherit;
+}
+
+.mu-about-left {
+  display: inline;
+  float: left;
+  padding-right: 15px;
+  width: 100%;
+}
+
+.mu-about-right {
+  display: inline;
+  float: left;
+  padding-left: 15px;
+  width: 100%
+}
+
+.mu-about-right ul li {
+  list-style: none;
+/*float: left;*/
+  margin-bottom: 25px;
+}
+
+.mu-about-right ul li h3 {
+  border-bottom: 3px solid #e5e5e5;
+  color: #323232;
+  font-size: 20px;
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  text-transform: none;
+  font-family: inherit;
+}
+
+.mu-about-right p {
+  font-size: 14px;
+  line-height: 1.59;
+}
+
+@media (max-width: 1199px) {
+  .mu-about-right {
+    padding-left: 0;
+  }
+  .mu-about-right ul li {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 991px) {
+  .mu-title {
+    padding: 0 10%;
+  }
+}
+
+@media (max-width: 767px) {
+  .mu-title {
+    padding: 0;
+    margin-bottom: 25px;
+  }
+  .mu-about-area {
+    padding: 60px 0;
+  }
+  .mu-about-right {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mu-title h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
 }
 
 /*====================================================
@@ -776,8 +913,6 @@ html {
     font-weight: bold;
     font-size: 16px;
     line-height: 1;
-    font-family: Arial
+/*  font-family: Arial;  */
 }
 
-/*
-*/
