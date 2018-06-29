@@ -1,164 +1,47 @@
-<!--
-<p id="notice"><#%= notice %></p>
-<h1>Radio Stations</h1>
-<table>
-  <thead> <tr> <th colspan="3"></th> </tr> </thead>
-  <tbody>
-    <#% @radio_stations.each do |radio_station| %>
-      <tr>
-        <td><#%= link_to 'Show', radio_station %></td>
-        <td><#%= link_to 'Edit', edit_radio_station_path(radio_station) %></td>
-        <td><#%= link_to 'Destroy', radio_station, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <#% end %>
-  </tbody>
-</table>
-<br>
-<#%= link_to 'New Radio Station', new_radio_station_path %>
- -->
-
-<!--
- -->
-
 <section class="probootstrap-section">
   <div class="container">
    
     <div class="row mb-4 pt-5">
       <div class="col-md-4">
-        <h2 class="h1 mb-0 mt-0">The Services </h2>
+        <h2 class="h1 mb-0 mt-0">Radio Stations</h2>
       </div>
       <div class="col-md-2"></div>
       <div class="col-md-6">
-        <p class="lead">Far far away, behind here live the blind texts.</p>
+        <p class="lead">Find Your Favorite Radio Station.</p>
+        <p class="notice"><%= notice %></p>
       </div>
     </div>
     
     <div class="row blog-grid">
+<!-- loop for radio_stations -->
+<% @radio_stations.each do |radio_station| %>
       <div class="col-lg-4 col-md-6">
         <div class="course-box">
           <div class="course-details">
-            <h4>
-              <small>Tips &amp; Tricks</small>
-              <a href="blog-single.html" title="">How to make JavaScript Linting With ESLint</a>
-            </h4>
-            <p>Donec maximus ligula in ante dignissim pretium. Donec vitae sem fermentum, scelerisque mi quis, cursus ipsum. Cras vitae est eu justo iaculis posuere. </p>
+            <h4><%= link_to radio_station.callsign, \
+                            radio_station.webcast_url, {:target => "_blank"} %></h4>
+            <p><%= radio_station.comment %></p>
           </div><!-- end details -->
           
           <div class="course-footer clearfix">
             <div class="pull-left">
               <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-user"></i> Martin</a></li>
-                <li><a href="#"><i class="fa fa-clock-o"></i> 15 Jun</a></li>
+                <li><a href="<%= user_path(radio_station.user.id) %>">
+                    <i class="fa fa-user"></i> <%= radio_station.user.name %></a></li>
+                <li><a href="<%= radio_station_path(radio_station.id) %>">
+                    <i class="fa fa-clock-o"></i> <%= radio_station.updated_at %></a></li>
+                <% if logged_in? && radio_station.user_id == current_user.id %>
+                <li><%= link_to 'Edit', edit_radio_station_path(radio_station.id) %></li>
+                <li><%= link_to 'Delete', radio_station, \
+                                 method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                <% end %>
               </ul>
             </div><!-- end left -->
           </div><!-- end footer -->
         </div>
       </div>
-      
-      <div class="col-lg-4 col-md-6">
-        <div class="course-box">
-          <div class="course-details">
-            <h4>
-              <small>Tips &amp; Tricks</small>
-              <a href="blog-single.html" title="">How to make JavaScript Linting With ESLint</a>
-            </h4>
-            <p>Donec maximus ligula in ante dignissim pretium. Donec vitae sem fermentum, scelerisque mi quis, cursus ipsum. Cras vitae est eu justo iaculis posuere. </p>
-          </div><!-- end details -->
-          
-          <div class="course-footer clearfix">
-            <div class="pull-left">
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-user"></i> Martin</a></li>
-                <li><a href="#"><i class="fa fa-clock-o"></i> 15 Jun</a></li>
-              </ul>
-            </div><!-- end left -->
-          </div><!-- end footer -->
-        </div>
-      </div>
-      
-      <div class="col-lg-4 col-md-6">
-        <div class="course-box">
-          <div class="course-details">
-            <h4>
-              <small>Tips &amp; Tricks</small>
-              <a href="blog-single.html" title="">How to make JavaScript Linting With ESLint</a>
-            </h4>
-            <p>Donec maximus ligula in ante dignissim pretium. Donec vitae sem fermentum, scelerisque mi quis, cursus ipsum. Cras vitae est eu justo iaculis posuere. </p>
-          </div><!-- end details -->
-          
-          <div class="course-footer clearfix">
-            <div class="pull-left">
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-user"></i> Martin</a></li>
-                <li><a href="#"><i class="fa fa-clock-o"></i> 15 Jun</a></li>
-              </ul>
-            </div><!-- end left -->
-          </div><!-- end footer -->
-        </div>
-      </div>
-      
-      <div class="col-lg-4 col-md-6">
-        <div class="course-box">
-          <div class="course-details">
-            <h4>
-              <small>Tips &amp; Tricks</small>
-              <a href="blog-single.html" title="">How to make JavaScript Linting With ESLint</a>
-            </h4>
-            <p>Donec maximus ligula in ante dignissim pretium. Donec vitae sem fermentum, scelerisque mi quis, cursus ipsum. Cras vitae est eu justo iaculis posuere. </p>
-          </div><!-- end details -->
-          
-          <div class="course-footer clearfix">
-            <div class="pull-left">
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-user"></i> Martin</a></li>
-                <li><a href="#"><i class="fa fa-clock-o"></i> 15 Jun</a></li>
-              </ul>
-            </div><!-- end left -->
-          </div><!-- end footer -->
-        </div>
-      </div>
-      
-      <div class="col-lg-4 col-md-6">
-        <div class="course-box">
-          <div class="course-details">
-            <h4>
-              <small>Tips &amp; Tricks</small>
-              <a href="blog-single.html" title="">How to make JavaScript Linting With ESLint</a>
-            </h4>
-            <p>Donec maximus ligula in ante dignissim pretium. Donec vitae sem fermentum, scelerisque mi quis, cursus ipsum. Cras vitae est eu justo iaculis posuere. </p>
-          </div><!-- end details -->
-          
-          <div class="course-footer clearfix">
-            <div class="pull-left">
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-user"></i> Martin</a></li>
-                <li><a href="#"><i class="fa fa-clock-o"></i> 15 Jun</a></li>
-              </ul>
-            </div><!-- end left -->
-          </div><!-- end footer -->
-        </div>
-      </div>
-      
-      <div class="col-lg-4 col-md-6">
-        <div class="course-box">
-          <div class="course-details">
-            <h4>
-              <small>Tips &amp; Tricks</small>
-              <a href="blog-single.html" title="">How to make JavaScript Linting With ESLint</a>
-            </h4>
-            <p>Donec maximus ligula in ante dignissim pretium. Donec vitae sem fermentum, scelerisque mi quis, cursus ipsum. Cras vitae est eu justo iaculis posuere. </p>
-          </div><!-- end details -->
-          
-          <div class="course-footer clearfix">
-            <div class="pull-left">
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-user"></i> Martin</a></li>
-                <li><a href="#"><i class="fa fa-clock-o"></i> 15 Jun</a></li>
-              </ul>
-            </div><!-- end left -->
-          </div><!-- end footer -->
-        </div>
-      </div>
+<% end %>
+<!-- loop for radio_stations -->
     </div>
     
   </div>

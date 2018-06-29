@@ -7,8 +7,7 @@ class RadioStationsController < ApplicationController
   end
 
   def index
-  # @radio_stations = RadioStation.order(:updated_at)
- ## render 'index'
+    @radio_stations = RadioStation.order(:updated_at)
   end
 
   def new
@@ -44,18 +43,16 @@ class RadioStationsController < ApplicationController
   end
 
   def update
-#   if @radio_station.update(radio_station_params)
-#     redirect_to radio_stations_path, notice: "ブログを編集しました！"
-  #     format.html { redirect_to @radio_station, notice: 'Radio station was successfully updated.' }
-#   else
-#     render 'edit'
-#   end
+    if @radio_station.update(radio_station_params)
+      redirect_to radio_stations_path, notice: "Radio station info was successfully updated."
+    else
+      render 'edit'
+    end
   end
 
   def destroy
-  # @radio_station.destroy
-#   redirect_to radio_stations_path, notice: "ブログを削除しました！"
-  #   format.html { redirect_to radio_stations_url, notice: 'Radio station was successfully destroyed.' }
+    @radio_station.destroy
+    redirect_to radio_stations_path, notice: "Radio station info was successfully destroyed."
   end
 
   private

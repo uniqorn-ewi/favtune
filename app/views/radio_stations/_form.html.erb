@@ -3,9 +3,11 @@
 <%= yield %>
     <div class="row">
       <div class="col-lg-12">
-        <!-- form -->
-<%= form_with(model: radio_station, \
+        <!-- form
+<#%= form_with(model: radio_station, \
               url: confirm_radio_stations_path, local: true) do |f| %>
+ -->
+<%= form_with(model: radio_station, local: true, url: choose_new_or_edit) do |f| %>
   <% if radio_station.errors.any? %>
     <div id="error_explanation">
       <h6><%= pluralize(radio_station.errors.count, "error") %>:</h6>
@@ -58,6 +60,7 @@
               placeholder: "Your Comment *", class: 'form-control' %>
         </div>
       </div>
+
 <%= f.hidden_field :user_id %>
 
       <div class="clearfix"></div>
