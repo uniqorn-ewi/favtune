@@ -5,7 +5,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: :false }
   before_save { email.downcase! }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   has_many :radio_stations
 # has_many :favorites, -> { order(:id) }, dependent: :destroy
 # has_many :favorite_stations, through: :favorites, source: :radio_station

@@ -17,6 +17,11 @@
           <p class="text-muted">Email: <%= @user.email %></p>
           <ul class="list-inline">
             <li class="list-inline-item">
+<%= link_to "Edit your profile", \
+    edit_user_path(user_id: @user.id), \
+    class: 'btn-default' %>
+            </li>
+            <li class="list-inline-item">
 <!--
 <#%= link_to "お気に入りのpictureの一覧", \
     user_favorite_pictures_path(user_id: @user.id), \
