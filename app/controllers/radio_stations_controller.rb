@@ -40,6 +40,9 @@ class RadioStationsController < ApplicationController
   end
 
   def edit
+    unless @radio_station.user_id.eql?(current_user.id)
+      redirect_to root_path, notice: "Invalid User!"
+    end
   end
 
   def update
@@ -51,8 +54,12 @@ class RadioStationsController < ApplicationController
   end
 
   def destroy
-    @radio_station.destroy
-    redirect_to radio_stations_path, notice: "Radio station info was successfully destroyed."
+    if @radio_station.user_id.eql?(current_user.id)
+      @radio_station.destroy
+      redirect_to radio_stations_path, notice: "Radio station info was successfully destroyed."
+    else
+      redirect_to root_path, notice: "Invalid User!"
+    end
   end
 
   private

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :show, :destroy]
 
   def new
     if params[:back]
@@ -39,6 +40,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+    unless @user.id.eql?(current_user.id)
+      redirect_to root_path, notice: "Invalid User!"
+    end
   end
 
   def update
@@ -50,10 +54,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-  # @user.destroy
-  # respond_to do |format|
-  #   format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-  #   format.json { head :no_content }
+  # if @user.id.eql?(current_user.id)
+  # # @user.destroy
+  # # respond_to do |format|
+  # #   format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+  # #   format.json { head :no_content }
+  # # end
+  # else
+  #   redirect_to root_path, notice: "Invalid User!"
   # end
   end
 
@@ -66,5 +74,9 @@ class UsersController < ApplicationController
       params.require(:user).permit(\
         :name, :email, :password, :password_confirmation)
       # :name, :email, :password, :password_confirmation, :avatar, :avatar_cache)
+    end
+
+    def logged_in_user
+      redirect_to new_session_path unless logged_in?
     end
 end
