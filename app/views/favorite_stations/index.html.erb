@@ -1,0 +1,45 @@
+<section class="probootstrap-section">
+  <div class="container">
+   
+    <div class="row mb-4 pt-5">
+      <div class="col-md-4">
+        <h2 class="h1 mb-0 mt-0">Favorite Radio Stations</h2>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-6">
+        <p class="lead">Your Favorite Radio Stations.</p>
+        <p class="notice"><%= notice %></p>
+      </div>
+    </div>
+    
+    <div class="row blog-grid">
+<!-- loop for radio_stations -->
+<% @favorite_stations.each do |radio_station| %>
+      <div class="col-lg-4 col-md-6">
+        <div class="course-box">
+          <div class="course-details">
+            <h4><%= link_to radio_station.callsign, \
+                            radio_station.webcast_url, {:target => "_blank"} %></h4>
+            <p><%= radio_station.comment %></p>
+          </div><!-- end details -->
+          
+          <div class="course-footer clearfix">
+            <div class="pull-left">
+              <ul class="list-inline">
+                <li><a href="<%= user_path(radio_station.user.id) %>">
+                    <i class="fa fa-user"></i> <%= radio_station.user.name %></a></li>
+                <li><a href="<%= radio_station_path(radio_station.id) %>">
+                    <i class="fa fa-clock-o"></i> <%= radio_station.updated_at %></a></li>
+                <li><%= link_to 'Delete', favorite_path(id: radio_station.id), \
+                                 method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              </ul>
+            </div><!-- end left -->
+          </div><!-- end footer -->
+        </div>
+      </div>
+<% end %>
+<!-- loop for radio_stations -->
+    </div>
+    
+  </div>
+</section>

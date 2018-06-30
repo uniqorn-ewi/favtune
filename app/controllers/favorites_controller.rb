@@ -1,42 +1,22 @@
 class FavoritesController < ApplicationController
-# before_action :set_favorite, only: [:show, :edit, :update, :destroy]
+# before_action :logged_in_user, only: [:destroy]
 
-  # GET /favorites/new
-  def new
-  # @favorite = Favorite.new
-  end
-
-  # POST /favorites
   def create
-  # @favorite = Favorite.new(favorite_params)
-  # respond_to do |format|
-  #   if @favorite.save
-  #     format.html { redirect_to @favorite, notice: 'Favorite was successfully created.' }
-  #     format.json { render :show, status: :created, location: @favorite }
-  #   else
-  #     format.html { render :new }
-  #     format.json { render json: @favorite.errors, status: :unprocessable_entity }
-  #   end
-  # end
+    favorite = current_user.favorites.create(radio_station_id: params[:id])
+    redirect_to radio_stations_path, notice: "Favorite radio station info was successfully created."
   end
 
-  # DELETE /favorites/1
   def destroy
-  # @favorite.destroy
-  # respond_to do |format|
-  #   format.html { redirect_to favorites_url, notice: 'Favorite was successfully destroyed.' }
-  #   format.json { head :no_content }
+  # if @radio_station.user_id.eql?(current_user.id)
+    favorite = current_user.favorites.find_by(radio_station_id: params[:id]).destroy
+    redirect_to radio_stations_path, notice: "Favorite radio station info was successfully destroyed."
+  # else
+  #   redirect_to root_path, notice: "Invalid User!"
   # end
   end
 
 # private
-#   # Use callbacks to share common setup or constraints between actions.
-#   def set_favorite
-#     @favorite = Favorite.find(params[:id])
-#   end
-#
-#   # Never trust parameters from the scary internet, only allow the white list through.
-#   def favorite_params
-#     params.fetch(:favorite, {})
+#   def logged_in_user
+#     redirect_to new_session_path unless logged_in?
 #   end
 end

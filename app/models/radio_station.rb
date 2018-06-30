@@ -6,6 +6,6 @@ class RadioStation < ApplicationRecord
                     format: /\A#{URI::regexp(%w(http https))}\z/,
                     uniqueness: { case_sensitive: :false }
   belongs_to :user
-# has_many :favorites, dependent: :destroy
-# has_many :favorite_users, through: :favorites, source: :user
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :user
 end

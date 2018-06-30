@@ -36,7 +36,7 @@ class RadioStationsController < ApplicationController
   end
 
   def show
-  # @favorite = current_user.favorites.find_by(radio_station_id: @radio_station.id)
+    @favorite = current_user.favorites.find_by(radio_station_id: @radio_station.id)
   end
 
   def edit

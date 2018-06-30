@@ -13,10 +13,10 @@ Rails.application.routes.draw do
     collection do
       post :confirm
     end
-  #   resources :favorite_stations, only: [:index]
+    resources :favorite_stations, only: [:index]
   end
 
-  # resources :favorites, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

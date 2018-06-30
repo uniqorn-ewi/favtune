@@ -61,6 +61,16 @@
                     <p><%= @radio_station.comment %></p>
                     <% end %>
                   </li>
+                <% unless @radio_station.user == current_user %>
+                  <% if @favorite.present? =%>
+                    <li><%= link_to "Fav Delete", favorite_path(id: @radio_station.id), \
+                                     method: :delete, class: 'btn-danger' %></li>
+                  <% else %>
+                    <li><%= link_to "Fav",    favorites_path(id: @radio_station.id), \
+                                     method: :post, class: 'btn-primary' %></li>
+                  <% end %>
+                <% end %>
+
                 </ul>
               </div>
             </div>
