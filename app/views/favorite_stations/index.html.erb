@@ -19,7 +19,8 @@
         <div class="course-box">
           <div class="course-details">
             <h4><%= link_to radio_station.callsign, \
-                            radio_station.webcast_url, {:target => "_blank"} %></h4>
+              radio_station.webcast_url, \
+              rel: 'noopener', target: '_blank' %></h4>
             <p><%= radio_station.comment %></p>
           </div><!-- end details -->
           

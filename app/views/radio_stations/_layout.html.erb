@@ -5,8 +5,8 @@
       <div class="intro-heading">Post Your Favorite Radio Station!</div>
 <% unless @radio_station.nil? %>
       <div class="intro-heading notice">
-         <%= link_to 'Latest Station info', \
-                     @radio_station.webcast_url, {:target => "_blank"} %>
+        <%= link_to 'Latest Station info', \
+          @radio_station.webcast_url, rel: 'noopener', target: '_blank' %>
       </div>
 <% end %>
       <div class="intro-heading notice"><%= notice %></div>

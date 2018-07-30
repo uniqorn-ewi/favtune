@@ -13,7 +13,8 @@
               <div class="mu-title">
                 <h2><%= @radio_station.callsign %></h2>
                 <h3><%= link_to 'Listen Live This Station', \
-                       @radio_station.webcast_url, {:target => "_blank"} %></h3>
+                  @radio_station.webcast_url, \
+                  rel: 'noopener', target: '_blank' %></h3>
               </div>
             </div>
           </div>
@@ -52,7 +53,8 @@
                     <h3>Website:</h3>
                     <% unless @radio_station.website.empty? %>
                     <p><%= link_to @radio_station.callsign, \
-                                   @radio_station.website, {:target => "_blank"} %></p>
+                      @radio_station.website, \
+                      rel: 'noopener', target: '_blank' %></p>
                     <% end %>
                   </li>
                   <li>
