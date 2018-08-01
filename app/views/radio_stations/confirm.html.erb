@@ -1,24 +1,25 @@
 <section id="contact">
   <div class="container">
+
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h2 class="section-heading text-uppercase">Edit Radio Station(US or Canada)</h2>
-        <h3 class="section-subheading text-muted">Please refer to information on the following site and input the item.</h3>
+        <h2 class="section-heading text-uppercase">Post Radio Station info ?</h2>
+        <h3 class="section-subheading text-muted">Please check information of the radio station.</h3>
         <br>
         <br>
         <br>
-
         <p></p>
-      </div>
+      </div><!--/col-lg-12 text-center -->
     </div>
 
     <div class="row">
-      <!-- div.col-lg-12 -->
       <div class="col-lg-12">
+
         <div class="row">
-<%= form_with(model: @radio_station, \
-              url: radio_stations_path, \
-              class: 'disp-contents', local: true) do |f| %>
+          <!-- form -->
+          <%= form_with(model: @radio_station,
+            url: radio_stations_path, class: 'disp-contents', local: true
+          ) do |f| %>
             <%= f.hidden_field :callsign %>
             <%= f.hidden_field :city %>
             <%= f.hidden_field :branding %>
@@ -61,19 +62,23 @@
                 <p><%= @radio_station.comment %></p>
               </div>
             </div>
+
             <%= f.hidden_field :user_id %>
             <div class="clearfix"></div>
 
             <div class="col-md-2"></div>
             <div class="col-md-2 text-center">
-              <%= f.submit 'Submit', class: 'btn btn-primary btn-xl text-uppercase' %>
+              <%= f.submit 'Submit',
+                class: 'btn btn-primary btn-xl text-uppercase' %>
             </div>
             <div class="col-md-2"></div>
-<% end %>
+          <% end %>
+          <!--/form Submit -->
 
-<%= form_with(model: @radio_station, \
-              url: new_radio_station_path, \
-              class: 'disp-contents', local: true, method: 'get') do |f| %>
+          <!-- form -->
+          <%= form_with(model: @radio_station, url: new_radio_station_path,
+            class: 'disp-contents', local: true, method: 'get'
+          ) do |f| %>
             <%= f.hidden_field :callsign %>
             <%= f.hidden_field :city %>
             <%= f.hidden_field :branding %>
@@ -87,13 +92,16 @@
 
             <div class="col-md-2"></div>
             <div class="col-md-2 text-center">
-              <%= f.submit "Back", name: 'back', class: 'btn btn-primary btn-xl text-uppercase' %>
+              <%= f.submit "Back", name: 'back',
+                class: 'btn btn-primary btn-xl text-uppercase' %>
             </div>
             <div class="col-md-2"></div>
-<% end %>
+          <% end %>
+          <!--/form Back -->
         </div>
-      </div>
-      <!--/div.col-lg-12 -->
-    </div>
+
+      </div><!--/col-lg-12 -->
+    </div><!--/row -->
+
   </div>
 </section>
