@@ -1,29 +1,30 @@
-<!--
-<p class="notice"><#%= notice %></p>
- -->
-
 <section id="mu-about">
   <div class="container">
+
     <div class="row">
       <div class="col-md-12">
         <div class="mu-about-area">
-          <!-- Title -->
+
+          <!-- Listen Live -->
           <div class="row">
             <div class="col-md-12">
               <div class="mu-title">
                 <h2><%= @radio_station.callsign %></h2>
-                <h3><%= link_to 'Listen Live This Station', \
-                  @radio_station.webcast_url, \
-                  rel: 'noopener', target: '_blank' %></h3>
+                <h3><%= link_to 'Listen Live This Station',
+                      @radio_station.webcast_url,
+                      rel: 'noopener', target: '_blank' %></h3>
               </div>
             </div>
           </div>
+          <!--/Listen Live -->
+
           <!-- Start Feature Content -->
           <div class="row">
-
             <!-- div class="col-md-6">
               <div class="mu-about-left">
-<#%= image_tag("/assets/no_image.png", width: 525, height: 433, alt: "img") %>
+                <#%= image_tag(
+                  "/assets/no_image.png", width: 525, height: 433, alt: "img"
+                ) %>
               </div>
             </div -->
             <div class="col-md-3"></div>
@@ -52,9 +53,9 @@
                   <li>
                     <h3>Website:</h3>
                     <% unless @radio_station.website.empty? %>
-                    <p><%= link_to @radio_station.callsign, \
-                      @radio_station.website, \
-                      rel: 'noopener', target: '_blank' %></p>
+                    <p><%= link_to @radio_station.callsign,
+                         @radio_station.website,
+                         rel: 'noopener', target: '_blank' %></p>
                     <% end %>
                   </li>
                   <li>
@@ -63,31 +64,35 @@
                     <p><%= @radio_station.comment %></p>
                     <% end %>
                   </li>
-                <% unless @radio_station.user == current_user %>
-                  <% if @favorite.present? =%>
-                    <li><%= link_to "Fav Delete", favorite_path(id: @radio_station.id), \
-                                     method: :delete, class: 'btn-danger' %></li>
-                  <% else %>
-                    <li><%= link_to "Fav",    favorites_path(id: @radio_station.id), \
-                                     method: :post, class: 'btn-primary' %></li>
+                  <% unless @radio_station.user == current_user %>
+                    <% if @favorite.present? %>
+                    <li><%= link_to "Fav Delete",
+                          favorite_path(id: @radio_station.id),
+                          method: :delete, class: 'btn-danger' %>
+                    </li>
+                    <% else %>
+                    <li><%= link_to "Fav",
+                          favorites_path(id: @radio_station.id),
+                          method: :post, class: 'btn-primary' %>
+                    </li>
+                    <% end %>
                   <% end %>
-                <% end %>
-
                 </ul>
               </div>
             </div>
 
             <div class="col-md-3"></div>
-
           </div>
           <!-- End Feature Content -->
+
+          <!--
+          <#%= link_to 'Edit', edit_radio_station_path(@radio_station) %> |
+          <#%= link_to 'Back', radio_stations_path %>
+           -->
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!--
-<#%= link_to 'Edit', edit_radio_station_path(@radio_station) %> |
-<#%= link_to 'Back', radio_stations_path %>
- -->
