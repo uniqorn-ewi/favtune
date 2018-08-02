@@ -7,7 +7,7 @@
       </div>
       <div class="col-md-2"></div>
       <div class="col-md-6">
-        <p class="lead">Your Favorite Radio Stations.</p>
+        <p class="lead"><%= @user.name %>'s Favorite Radio Stations.</p>
         <p class="notice"><%= notice %></p>
       </div>
     </div>
@@ -33,9 +33,11 @@
                   <a href="<%= radio_station_path(radio_station.id) %>">
                     <i class="fa fa-clock-o"></i> <%= radio_station.updated_at %></a>
                 </li>
+                <% if @user == current_user %>
                 <li><%= link_to 'Delete', favorite_path(id: radio_station.id),
                       method: :delete, data: { confirm: 'Are you sure?' } %>
                 </li>
+                <% end %>
               </ul>
             </div><!-- end pull-left -->
           </div><!-- end course-footer -->
