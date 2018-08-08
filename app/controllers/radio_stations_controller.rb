@@ -21,7 +21,7 @@ class RadioStationsController < ApplicationController
 
   def confirm
     @radio_station = RadioStation.new(radio_station_params)
-    render 'new' if @radio_station.invalid?
+    render :new if @radio_station.invalid?
   end
 
   def create
@@ -31,7 +31,7 @@ class RadioStationsController < ApplicationController
 #     redirect_to radio_station_path, notice: "Radio station info was successfully created."
       redirect_to root_path, notice: "Radio station info was successfully created."
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -49,7 +49,7 @@ class RadioStationsController < ApplicationController
     if @radio_station.update(radio_station_params)
       redirect_to radio_stations_path, notice: "Radio station info was successfully updated."
     else
-      render 'edit'
+      render :edit
     end
   end
 

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def confirm
     @user = User.new(user_params)
-    render 'new' if @user.invalid?
+    render :new if @user.invalid?
   end
 
   def create
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to root_path, notice: "User info was successfully updated."
     else
-      render 'edit'
+      render :edit
     end
   end
 

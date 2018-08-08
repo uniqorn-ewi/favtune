@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     else
       flash.now[:danger] = "Failed in sign in ..."
     # flash.now[:danger] = "ログインに失敗しました"
-      render 'new'
+      render :new
     end
   end
 
