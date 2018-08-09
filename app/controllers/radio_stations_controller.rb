@@ -14,8 +14,7 @@ class RadioStationsController < ApplicationController
     if params[:back]
       @radio_station = RadioStation.new(radio_station_params)
     else
-      @radio_station = RadioStation.new
-      @radio_station.user_id = current_user.id
+      @radio_station = current_user.radio_stations.build
     end
   end
 
