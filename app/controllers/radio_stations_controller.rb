@@ -27,8 +27,6 @@ class RadioStationsController < ApplicationController
   def create
     @radio_station = RadioStation.new(radio_station_params)
     if @radio_station.save
-#     redirect_to radio_stations_path, notice: "Radio station info was successfully created."
-#     redirect_to radio_station_path, notice: "Radio station info was successfully created."
       redirect_to(
         root_path,
         notice: "Radio station info was successfully created."
