@@ -29,14 +29,18 @@ class RadioStationsController < ApplicationController
     if @radio_station.save
 #     redirect_to radio_stations_path, notice: "Radio station info was successfully created."
 #     redirect_to radio_station_path, notice: "Radio station info was successfully created."
-      redirect_to root_path, notice: "Radio station info was successfully created."
+      redirect_to(
+        root_path,
+        notice: "Radio station info was successfully created."
+      )
     else
       render :new
     end
   end
 
   def show
-    @favorite = current_user.favorites.find_by(radio_station_id: @radio_station.id)
+    @favorite =
+      current_user.favorites.find_by(radio_station_id: @radio_station.id)
   end
 
   def edit
@@ -47,7 +51,10 @@ class RadioStationsController < ApplicationController
 
   def update
     if @radio_station.update(radio_station_params)
-      redirect_to radio_stations_path, notice: "Radio station info was successfully updated."
+      redirect_to(
+        radio_stations_path,
+        notice: "Radio station info was successfully updated."
+      )
     else
       render :edit
     end
@@ -56,7 +63,10 @@ class RadioStationsController < ApplicationController
   def destroy
     if @radio_station.user_id.eql?(current_user.id)
       @radio_station.destroy
-      redirect_to radio_stations_path, notice: "Radio station info was successfully destroyed."
+      redirect_to(
+        radio_stations_path,
+        notice: "Radio station info was successfully destroyed."
+      )
     else
       redirect_to root_path, notice: "Invalid User!"
     end
@@ -68,8 +78,17 @@ class RadioStationsController < ApplicationController
     end
 
     def radio_station_params
-      params.require(:radio_station).permit(:user_id, \
-        :callsign, :city, :branding, :station_format, :webcast_url, :website, :comment)
+      params.require(:radio_station).
+        permit(
+          :user_id,
+          :callsign,
+          :city,
+          :branding,
+          :station_format,
+          :webcast_url,
+          :website,
+          :comment
+        )
     end
 
     def logged_in_user
