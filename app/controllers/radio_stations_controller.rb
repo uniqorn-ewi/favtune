@@ -1,6 +1,7 @@
 class RadioStationsController < ApplicationController
   before_action :set_radio_station, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:new, :edit, :show, :destroy]
+  before_action :user_has_radio_station, only: [:edit, :destroy]
 
   def top
     @radio_station = RadioStation.order(:updated_at).first
@@ -41,9 +42,6 @@ class RadioStationsController < ApplicationController
   end
 
   def edit
-    unless @radio_station.user_id.eql?(current_user.id)
-      redirect_to root_path, notice: "Invalid User!"
-    end
   end
 
   def update
@@ -58,15 +56,11 @@ class RadioStationsController < ApplicationController
   end
 
   def destroy
-    if @radio_station.user_id.eql?(current_user.id)
-      @radio_station.destroy
-      redirect_to(
-        radio_stations_path,
-        notice: "Radio station info was successfully destroyed."
-      )
-    else
-      redirect_to root_path, notice: "Invalid User!"
-    end
+    @radio_station.destroy
+    redirect_to(
+      radio_stations_path,
+      notice: "Radio station info was successfully destroyed."
+    )
   end
 
   private
@@ -90,5 +84,13 @@ class RadioStationsController < ApplicationController
 
     def logged_in_user
       redirect_to new_session_path unless logged_in?
+    end
+
+    def user_has_radio_station
+      if current_user.radio_stations.find_by(
+        user_id: @radio_station.user_id
+      ).nil?
+        redirect_to root_path, notice: "Invalid User!"
+      end
     end
 end
