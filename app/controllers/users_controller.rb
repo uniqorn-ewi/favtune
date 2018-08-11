@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:edit, :show, :destroy]
+  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :logged_in_user, only: %i[ edit show destroy ]
 
   def new
     if params[:back]
