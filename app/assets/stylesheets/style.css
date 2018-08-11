@@ -213,11 +213,6 @@ img::-moz-selection {
         max-height: none !important;
     }
 
-    .vesco-top-nav ul.navbar-nav>li>a.active {
-        color: #2196f3!important;
-    }
-
-
     @media (max-width: 991px) {
 
         .navbar>.container .navbar-nav {
