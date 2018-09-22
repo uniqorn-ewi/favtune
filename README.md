@@ -1,26 +1,41 @@
-# README
+favtune
+====
+https://favtune.herokuapp.com/
 
-# favtune
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+アメリカのサイマルラジオ局（地上波AM,FM/streaming）の情報共有サイトです。
+情報が投稿されているラジオ局を聴取できます。
+＊オールディーズ、クラシック・ヒットなどの音楽が主要なコンテンツであるラジオ局に限定しています。
 
-Things you may want to cover:
+## Function
+- トップ画面：最新で登録されたラジオ局の情報を１件表示
+- ユーザ情報登録/更新：名前・メールアドレス・パスワード（必須）
+- マイページ：自らの情報表示（名前・お気に入りラジオ局情報一覧画面へのリンク）
+- ラジオ局の情報の投稿/編集/削除
+- ラジオ局の情報の一覧：最新の情報から降順に表示
+- ラジオ局の情報の詳細：聴取できるネット配信URLへのリンク（お気に入りボタン）
+- お気に入りラジオ局情報一覧：ユーザのお気に入りラジオ局情報の一覧を表示
 
-* Ruby version
+## Comming Soon
+- ユーザ退会：マイページで退会を選択
+- ユーザ情報登録/更新：ユーザ画像（任意）
+- マイページ：自らの情報表示（ユーザ画像）
+- ラジオ局の情報の詳細：ストリーミングサイトのページの画像表示
+- 管理者機能
+- ユーザ情報更新：パスワードの再設定
+- ラジオ局の情報の投稿/編集：コールサインだけを入力（ラジオ局情報の他の項目を補完）
+- SNSログイン
+- ラジオ局情報検索
+- ラジオ局情報整理：情報を自動的に整理（カテゴリー分け）
+- ページネーション：ラジオ局情報一覧画面
+- 日英表示切り替え
 
-* System dependencies
+## Licence
 
-* Configuration
+[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
 
-* Database creation
+## Author
 
-* Database initialization
+[uniqorn-ewi](https://github.com/uniqorn-ewi)
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
