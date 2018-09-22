@@ -15,7 +15,7 @@ class User < ApplicationRecord
     length: { minimum: 6 },
     allow_nil: true
   )
-  has_many :radio_stations
+  has_many :radio_stations, dependent: :destroy
   has_many :favorites, -> { order(:id) }, dependent: :destroy
   has_many :favorite_stations, through: :favorites, source: :radio_station
   # mount_uploader :avatar, AvatarUploader

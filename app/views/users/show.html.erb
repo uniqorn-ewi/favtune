@@ -31,6 +31,12 @@
                 user_favorite_stations_path(user_id: @user.id),
                 class: 'btn-default' %>
             </li>
+            <li class="list-inline-item">
+              <%= link_to "Erase user registration",
+                user_path(user_id: @user.id),
+                class: 'btn-danger',
+                method: :delete, data: { confirm: 'Are you sure?' } %>
+            </li>
           </ul>
         </div>
       </div>

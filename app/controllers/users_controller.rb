@@ -29,9 +29,7 @@ class UsersController < ApplicationController
     if @user.save
       NotifyMailer.notify_mail(@user).deliver
       redirect_to root_path, notice: "An e-mail of invitation was sent to you."
-    # redirect_to root_path, notice: "You were registered as a user."
     else
-    # render 'new'
       redirect_to root_path, notice: "Error..."
     end
   end
@@ -54,15 +52,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-  # if @user.id.eql?(current_user.id)
-  # # @user.destroy
-  # # respond_to do |format|
-  # #   format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-  # #   format.json { head :no_content }
-  # # end
-  # else
-  #   redirect_to root_path, notice: "Invalid User!"
-  # end
+    if @user.id.eql?(current_user.id)
+      session.delete(:user_id)
+      @user.destroy
+      redirect_to root_path, notice: "You are not registered as a user."
+    else
+      redirect_to root_path, notice: "Invalid User!"
+    end
   end
 
   private
