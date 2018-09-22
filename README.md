@@ -2,6 +2,7 @@ favtune
 ====
 https://favtune.herokuapp.com/
 
+![favtune-md](https://user-images.githubusercontent.com/37038796/45913033-5366fc80-be66-11e8-8fb6-f1406f38e35e.png)
 
 ## Description
 アメリカのサイマルラジオ局（地上波AM,FM/streaming）の情報共有サイトです。
