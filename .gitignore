@@ -13,15 +13,13 @@
 !/log/.keep
 !/tmp/.keep
 
-/public/uploads/user/avatar/*
-/public/uploads/tmp/*
-!/public/uploads/user/avatar/.keep
-!/public/uploads/tmp/.keep
-
-/node_modules/bootstrap
-/node_modules/jquery
+/node_modules/bootstrap/*
+/node_modules/jquery/*
 !/node_modules/bootstrap/.keep
 !/node_modules/jquery/.keep
+
+/vendor/bundle/*
+!/vendor/bundle/.keep
 
 /yarn-error.log
 
