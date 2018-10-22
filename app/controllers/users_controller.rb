@@ -5,9 +5,6 @@ class UsersController < ApplicationController
   def new
     if params[:back]
       @user = User.new(user_params)
-    # unless params[:cache][:avatar].empty?
-    #   @user.avatar.retrieve_from_cache! params[:cache][:avatar]
-    # end
     else
       @user = User.new
     end
@@ -20,12 +17,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.status = true
-  # @user.status = false
-  # unless params[:cache][:avatar].empty?
-  #   @user.avatar.retrieve_from_cache! params[:cache][:avatar]
-  # end
-    
     if @user.save
       NotifyMailer.notify_mail(@user).deliver
       redirect_to root_path, notice: "An e-mail of invitation was sent to you."
@@ -67,9 +58,8 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(\
+      params.require(:user).permit(
         :name, :email, :password, :password_confirmation)
-      # :name, :email, :password, :password_confirmation, :avatar, :avatar_cache)
     end
 
     def logged_in_user
