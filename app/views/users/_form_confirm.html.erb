@@ -8,9 +8,6 @@
       <%= f.hidden_field :email %>
       <%= f.hidden_field :password %>
       <%= f.hidden_field :password_confirmation %>
-      <!--
-      <#%= hidden_field_tag :"cache[avatar]", user.avatar.cache_name %>
-       -->
       <div class="form-group">
         <%= f.label :name, 'Name' %>
         <p><%= user.name %></p>
@@ -23,11 +20,6 @@
         <%= f.label :password, 'Password' %>
         <p><%= user.password %></p>
       </div>
-      <!--
-      <div class="team-member">
-        <img class="img-fluid mx-auto rounded-circle" src="/<#%= user.avatar.cache_path %>" alt="avatar" />
-      </div>
-       -->
       <%= f.submit 'Submit', class: 'btn btn-primary btn-block' %>
     <% end %>
     <!--/form -->
@@ -40,9 +32,6 @@
         <%= f.hidden_field :email %>
         <%= f.hidden_field :password %>
         <%= f.hidden_field :password_confirmation %>
-        <!--
-        <#%= hidden_field_tag :"cache[avatar]", user.avatar.cache_name %>
-         -->
         <%= f.submit "Back", name: 'back',
           class: 'btn btn-block d-block small mt-3' %>
       <% end %>

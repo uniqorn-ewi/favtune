@@ -18,5 +18,4 @@ class User < ApplicationRecord
   has_many :radio_stations, dependent: :destroy
   has_many :favorites, -> { order(:id) }, dependent: :destroy
   has_many :favorite_stations, through: :favorites, source: :radio_station
-  # mount_uploader :avatar, AvatarUploader
 end

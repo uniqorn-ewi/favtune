@@ -6,18 +6,6 @@
 
       <div class="col-sm-4">
         <div class="team-member">
-          <!--
-          <#% if !@user.avatar.file.nil? && @user.avatar.file.exists? %>
-          <#%= image_tag(
-            @user.avatar.url, class: 'mx-auto rounded-circle', alt: 'avatar'
-          ) %>
-          <#% else %>
-          <#%= image_tag(
-            '/assets/no_image.png',
-            class: 'mx-auto rounded-circle', alt: 'no image'
-          ) %>
-          <#% end %>
-           -->
           <h5><%= @user.name %></h5>
           <p class="text-muted">Email: <%= @user.email %></p>
           <ul class="list-inline">

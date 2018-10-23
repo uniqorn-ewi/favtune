@@ -40,12 +40,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '3.1.11'
 
-gem 'dotenv-rails'
-
-gem 'carrierwave', '~> 1.0'
-
-gem 'file_validators'
-
 group :production do
   gem 'cloudinary'
 end
@@ -66,8 +60,6 @@ group :development, :test do
   # Hirb （データを表形式で表示）
   gem 'hirb'
   gem 'hirb-unicode'
-
-  gem 'mini_magick'
 end
 
 # Use Capistrano for deployment
