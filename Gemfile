@@ -40,6 +40,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '3.1.11'
 
+gem 'infoboxer'
+
 group :production do
   gem 'cloudinary'
 end
