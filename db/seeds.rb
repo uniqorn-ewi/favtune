@@ -1,7 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require "csv"
+
+CSV.foreach('db/radio_stations.tsv',
+            col_sep: "\t",
+            quote_char: '"',
+            headers: true) do |row|
+    RadioStation.create(
+      callsign:       row['callsign'],
+      city:           row['city'],
+      branding:       row['branding'],
+      station_format: row['station_format'],
+      webcast_url:    row['webcast_url'],
+      webcast_img:    row['webcast_img'],
+      website:        row['website'],
+      comment:        row['comment'],
+      user_id:        row['user_id']
+    )
+end
