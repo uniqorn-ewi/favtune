@@ -20,14 +20,21 @@
 
           <!-- Start Feature Content -->
           <div class="row">
-            <!-- div class="col-md-6">
+            <div class="col-md-6">
               <div class="mu-about-left">
-                <#%= image_tag(
+                <% if @radio_station.webcast_img == nil ||
+                      @radio_station.webcast_img.empty? %>
+                <%= image_tag(
                   "/assets/no_image.png", width: 525, height: 433, alt: "img"
                 ) %>
+                <% else %>
+                <%= image_tag(
+                  @radio_station.webcast_img,
+                  width: 525, height: 433, alt: "webcast_img"
+                ) %>
+                <% end %>
               </div>
-            </div -->
-            <div class="col-md-3"></div>
+            </div>
 
             <div class="col-md-6">
               <div class="mu-about-right">
@@ -80,15 +87,13 @@
                 </ul>
               </div>
             </div>
-
-            <div class="col-md-3"></div>
           </div>
           <!-- End Feature Content -->
 
-          <!--
-          <#%= link_to 'Edit', edit_radio_station_path(@radio_station) %> |
-          <#%= link_to 'Back', radio_stations_path %>
-           -->
+          <% if @radio_station.user == current_user %>
+          <%= link_to 'Edit', edit_radio_station_path(@radio_station) %> |
+          <% end %>
+          <%= link_to 'Back', radio_stations_path %>
         </div>
       </div>
     </div>
