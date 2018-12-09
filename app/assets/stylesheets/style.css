@@ -295,6 +295,12 @@ img::-moz-selection {
 
     /*footer bottom*/
 
+    footer {
+        bottom: 0;
+        position: fixed;
+        width: 100%;
+    }
+
     #footer-bottom {
         background-color: rgba(0, 0, 0, 0.8);
         padding: 30px 0;
