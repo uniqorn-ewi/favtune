@@ -87,7 +87,6 @@ section h3.section-subheading {
   font-size: 16px;
   font-weight: 400;
   font-style: italic;
-/*margin-bottom: 75px;*/
   margin-bottom: 15px;
   text-transform: none;
 }
@@ -253,9 +252,7 @@ img::-moz-selection {
           text-align: right;
         }
     }
-/*
-    @media (max-width: 767px) {
-*/
+
     @media (max-width: 991px) {
 
         .affix {
@@ -374,134 +371,6 @@ img::-moz-selection {
     }
 
 /*====================================================
-               TITLE CONTENT (Generic)
-
-    .title-bar {
-        padding: 100px 0;
-    }
-
-    .title-bar h1 {
-        color: #41464b;
-        text-align: center;
-        font-weight: 700;
-        margin: 20px auto 10px auto;
-    }
-
-    .title-bar .heading-border {
-        width: 60px;
-        height: 10px;
-        background-color: #2196f3;
-        margin: 0 auto 20px auto;
-    }
-
-    .heading-border-light {
-        width: 30px;
-        height: 5px;
-        background-color: #2196f3;
-        margin: 0 0 20px 0;
-    }
-
-    .title-bar p {
-        color: #717171;
-    }
-
-    .title-bar p {
-        text-align: center;
-        font-size: 15px;
-        line-height: 1.5;
-        padding-bottom: 40px;
-        margin: 0 auto;
-        max-width: 700px;
-    }
-
-    .title-bar .title-but {
-        margin: 0;
-        background-color: transparent;
-        text-align: center;
-    }
-
-    @media (max-width: 575px) {
-
-        .title-bar {
-            padding: 50px 0;
-        }
-
-        .title-bar h1 {
-            color: #41464b;
-            font-size: 30px;
-            text-align: center;
-            font-weight: 700;
-            margin: 20px auto 10px auto;
-        }
-
-        .title-bar p {
-            text-align: center;
-            font-size: 14px;
-            line-height: 1.5;
-            padding-bottom: 40px;
-            margin: 0 auto;
-            max-width: 700px;
-        }
-    }
-
-    @media (min-width: 1600px) {
-        .title-bar p {
-            font-size: 16px;
-        }
-    }
-
-======================================================*/
-
-/*====================================================
-               COLOR (Generic)
-
-    .cl-white {
-        color: #fff;
-    }
-
-    .cl-atlantis {
-        color: #fff;
-    }
-
-    .bg-white {
-        background: #fff;
-    }
-
-    .bg-atlantis {
-        background: #2196f3;
-    }
-
-    .bg-starship {
-        background: #cdd613;
-    }
-
-    .bg-matisse {
-        background: #0b385d;
-    }
-
-    .bg-chathams {
-        background: #0aa1b9;
-    }
-
-    .bg-gray {
-        background: #f0f0f0;
-    }
-
-    .bg-light-gray {
-        background: #f9f9f9;
-    }
-
-    .bg-gradiant {
-        background: -moz-linear-gradient(45deg, rgba(34, 155, 242, 1) 0%, rgba(0, 128, 129, 1) 99%, rgba(0, 128, 128, 1) 100%);
-        background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(34, 155, 242, 1)), color-stop(99%, rgba(0, 128, 129, 1)), color-stop(100%, rgba(0, 128, 128, 1)));
-        background: -webkit-linear-gradient(45deg, rgba(34, 155, 242, 1) 0%, rgba(0, 128, 129, 1) 99%, rgba(0, 128, 128, 1) 100%);
-        background: -o-linear-gradient(45deg, rgba(34, 155, 242, 1) 0%, rgba(0, 128, 129, 1) 99%, rgba(0, 128, 128, 1) 100%);
-    }
-
-======================================================*/
-
-
-/*====================================================
                        HOME: agency
 ======================================================*/
 
@@ -520,9 +389,6 @@ div#error_explanation {
   display: contents;
 }
 
-/*
-.loader {
-*/
 #preloader {
   position: fixed;
   left: 0px;
@@ -531,11 +397,6 @@ div#error_explanation {
   height: 100%;
   z-index: 9999;
   background: url(/assets/loading.gif) 50% 50% no-repeat;
-/*
-  background: url(/assets/puff.svg) 50% 50% no-repeat #2a54f5;
-  background: url(/assets/loading.gif) 50% 50% no-repeat #f9f9f9;
-*/
-
   opacity: 1;
 }
 
@@ -576,8 +437,6 @@ div#error_explanation {
   }
 
   .masthead .intro-text .intro-lead-in {
-/*  font-size: 40px;
-    line-height: 40px; */
     height: 40px;
     margin-bottom: 25px;
     font-style: italic;
@@ -597,8 +456,6 @@ div#error_explanation {
     padding-bottom: 240px;
   }
   .masthead .intro-text .intro-lead-in {
-  /*font-size: 22px;
-    line-height: 22px; */
     height: 22px;
     margin-bottom: 25px;
     font-style: italic;
@@ -615,13 +472,7 @@ div#error_explanation {
 /*====================================================
                    sign-up & in: sb-admin
 ======================================================*/
-/*
-html {
-  position: relative;
-  min-height: 100%;
-}
 
-*/
 .card-login {
   max-width: 25rem;
 }
@@ -633,24 +484,17 @@ html {
 /*====================================================
                    user-show: agency
 ======================================================*/
+
 @media (min-width: 768px) {
-  #team .row { /* height: 820px */
-/*
-    padding-top: 342px;
-    padding-bottom: 292px;
-*/
+  #team .row {
     padding-top: 165px;
     padding-bottom: 166px;
   }
 }
 @media (max-width: 767px) {
-  #team .row { /* height: 652px */
+  #team .row {
     padding-top: 257px;
     padding-bottom: 207px;
-/*
-    padding-top: 165px;
-    padding-bottom: 166px;
-*/
   }
 }
 
@@ -681,12 +525,9 @@ html {
 
 #mu-about {
   overflow-x:hidden;
-/*font-family: 'Raleway', sans-serif;*/
   color: #666666;
   font-size: 16px;
   font-weight: 400;
-  /*body*/
-
   background-color: #fff;
   display: inline;
   width: 100%;
@@ -750,7 +591,6 @@ html {
 
 .mu-about-right ul li {
   list-style: none;
-/*float: left;*/
   margin-bottom: 25px;
 }
 
@@ -908,6 +748,4 @@ html {
     font-weight: bold;
     font-size: 16px;
     line-height: 1;
-/*  font-family: Arial;  */
 }
-
