@@ -374,6 +374,16 @@ img::-moz-selection {
                        HOME: agency
 ======================================================*/
 
+textarea.form-control.radio-station {
+  height: calc(5.66rem + 1.8px);
+}
+
+p.radio-station {
+  height: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
 div#error_explanation {
   color: red;
 }
