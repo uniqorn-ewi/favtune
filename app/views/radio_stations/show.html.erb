@@ -68,7 +68,7 @@
                   <li>
                     <h3>Comment:</h3>
                     <% unless @radio_station.comment.empty? %>
-                    <p><%= @radio_station.comment %></p>
+                    <p class="radio-station"><%= @radio_station.comment %></p>
                     <% end %>
                   </li>
                   <% unless @radio_station.user == current_user %>
