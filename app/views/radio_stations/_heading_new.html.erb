@@ -14,7 +14,37 @@
     <br>
     <%= link_to 'Webcast - Wikipedia', "https://en.wikipedia.org/wiki/Webcast",
       rel: 'noopener', target: '_blank' %>
-    <p></p>
 
+    <br>
+    <br>
+
+<select class="parent" name="selectParent">
+  <%= options_for_select([
+    ["country", "", {selected: ""}],
+    ["USA", "USA"],
+    ["Canada", "Canada"],
+  ]) %>
+</select>
+
+<select class="children" name="selectChildren" disabled>
+  <%= options_for_select([
+    ["state", "", {selected: ""}],
+    ["California", "California", {data: {val: "USA"}}],
+    ["New York", "New York", {data: {val: "USA"}}],
+    ["Tennessee", "Tennessee", {data: {val: "USA"}}],
+  ]) %>
+</select>
+
+<select class="grandchilds" name="selectGrandchilds" disabled>
+  <%= options_for_select([
+    ["callsign", "", {selected: ""}],
+    ["KAMP-FM", "KAMP-FM", {data: {val: "California"}}],
+    ["KOAD-LP", "KOAD-LP", {data: {val: "California"}}],
+    ["KRHQ", "KRHQ", {data: {val: "California"}}],
+    ["KZRO", "KZRO", {data: {val: "California"}}],
+  ]) %>
+</select>
+
+    <p></p>
   </div>
 </div>
