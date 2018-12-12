@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.text_field :callsign,
+                <%= f.text_field :callsign, readonly: true,
                   data: {validation_required_message: "Please enter callsign of station."},
                   required: 'required',
                   placeholder: "Callsign Of Station *",
@@ -28,12 +28,12 @@
                 <p class="help-block text-danger"></p>
               </div>
               <div class="form-group">
-                <%= f.text_field :city,
+                <%= f.text_field :city, readonly: true,
                   placeholder: "City Of Station *",
                   id: 'city', class: 'form-control' %>
               </div>
               <div class="form-group">
-                <%= f.text_field :branding,
+                <%= f.text_field :branding, readonly: true,
                   placeholder: "Branding Of Station *",
                   id: 'branding', class: 'form-control' %>
               </div>
@@ -54,7 +54,7 @@
                 <p class="help-block text-danger"></p>
               </div>
               <div class="form-group">
-                <%= f.url_field :website,
+                <%= f.url_field :website, readonly: true,
                   placeholder: "Website URL Of Station *",
                   id: 'website', class: 'form-control' %>
               </div>
