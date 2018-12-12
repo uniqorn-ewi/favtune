@@ -23,20 +23,24 @@
                 <%= f.text_field :callsign,
                   data: {validation_required_message: "Please enter callsign of station."},
                   required: 'required',
-                  placeholder: "Callsign Of Station *", class: 'form-control' %>
+                  placeholder: "Callsign Of Station *",
+                  id: 'callsign', class: 'form-control' %>
                 <p class="help-block text-danger"></p>
               </div>
               <div class="form-group">
                 <%= f.text_field :city,
-                  placeholder: "City Of Station *", class: 'form-control' %>
+                  placeholder: "City Of Station *",
+                  id: 'city', class: 'form-control' %>
               </div>
               <div class="form-group">
                 <%= f.text_field :branding,
-                  placeholder: "Branding Of Station *", class: 'form-control' %>
+                  placeholder: "Branding Of Station *",
+                  id: 'branding', class: 'form-control' %>
               </div>
               <div class="form-group">
                 <%= f.text_field :station_format,
-                  placeholder: "Radio Format Of Station *", class: 'form-control' %>
+                  placeholder: "Radio Format Of Station *",
+                  id: 'station_format', class: 'form-control' %>
               </div>
             </div>
 
@@ -45,12 +49,14 @@
                 <%= f.url_field :webcast_url,
                   data: {validation_required_message: "Please enter webcast url of station."},
                   required: 'required',
-                  placeholder: "Webcast URL Of Station *", class: 'form-control' %>
+                  placeholder: "Webcast URL Of Station *",
+                  id: 'webcast_url', class: 'form-control' %>
                 <p class="help-block text-danger"></p>
               </div>
               <div class="form-group">
                 <%= f.url_field :website,
-                  placeholder: "Website URL Of Station *", class: 'form-control' %>
+                  placeholder: "Website URL Of Station *",
+                  id: 'website', class: 'form-control' %>
               </div>
               <div class="form-group">
                 <%= f.text_area :comment,
