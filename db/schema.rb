@@ -10,16 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181206173740) do
+ActiveRecord::Schema.define(version: 20181223221809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "callsigns", force: :cascade do |t|
+    t.string "spelling"
+    t.bigint "province_id"
+    t.boolean "isvalid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["province_id"], name: "index_callsigns_on_province_id"
+    t.index ["spelling"], name: "index_callsigns_on_spelling", unique: true
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "radio_station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.bigint "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_provinces_on_country_id"
   end
 
   create_table "radio_stations", force: :cascade do |t|
@@ -48,5 +72,7 @@ ActiveRecord::Schema.define(version: 20181206173740) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "callsigns", "provinces"
+  add_foreign_key "provinces", "countries"
   add_foreign_key "radio_stations", "users"
 end

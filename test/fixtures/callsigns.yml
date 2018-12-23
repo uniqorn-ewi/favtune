@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spelling: MyString
+  province: one
+  isvalid: false
+
+two:
+  spelling: MyString
+  province: two
+  isvalid: false
