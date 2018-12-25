@@ -44,6 +44,8 @@ gem 'open_uri_redirections'
 
 gem 'infoboxer'
 
+gem 'seed-fu', '~> 2.3'
+
 group :production do
   gem 'cloudinary'
 end
