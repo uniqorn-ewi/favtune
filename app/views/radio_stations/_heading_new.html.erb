@@ -14,30 +14,27 @@
     <br>
 
 <select class="parent" name="selectParent">
-  <%= options_for_select([
-    ["country", "", {selected: ""}],
-    ["USA", "USA"],
-    ["Canada", "Canada"],
-  ]) %>
+  <option selected="selected" value="">country</option>
+<% countries = Country.order(:id) %>
+<% countries.each do |c| %>
+  <option value="<%= c.id %>"><%= c.name %></option>
+<% end %>
 </select>
 
 <select class="children" name="selectChildren" disabled>
-  <%= options_for_select([
-    ["state", "", {selected: ""}],
-    ["California", "California", {data: {val: "USA"}}],
-    ["New York", "New York", {data: {val: "USA"}}],
-    ["Tennessee", "Tennessee", {data: {val: "USA"}}],
-  ]) %>
+  <option selected="selected" value="">state/province</option>
+<% provinces = Province.order(:id) %>
+<% provinces.each do |p| %>
+  <option data-val="<%= p.country_id %>" value="<%= p.id %>"><%= p.name %></option>
+<% end %>
 </select>
 
 <select class="grandchilds" name="selectGrandchilds" disabled>
-  <%= options_for_select([
-    ["callsign", "", {selected: ""}],
-    ["KAMP-FM", "KAMP-FM", {data: {val: "California"}}],
-    ["KOAD-LP", "KOAD-LP", {data: {val: "California"}}],
-    ["KRHQ", "KRHQ", {data: {val: "California"}}],
-    ["KZRO", "KZRO", {data: {val: "California"}}],
-  ]) %>
+  <option selected="selected" value="">callsign</option>
+<% callsigns = Callsign.where(isvalid: nil).order(:id) %>
+<% callsigns.each do |s| %>
+  <option data-val="<%= s.province_id %>" value="<%= s.spelling %>"><%= s.spelling %></option>
+<% end %>
 </select>
 
     <p></p>
