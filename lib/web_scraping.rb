@@ -7,6 +7,8 @@ require 'timeout'
 require 'uri'
 
 class WebScraping
+  REQUEST_HEADER = {"User-Agent": "Mozilla/5.0 (WebAPIClient; Ruby)" }
+
   WIKIPEDIA_BASE = "https://en.wikipedia.org/wiki/"
 
   WIKIPEDIA_API =
@@ -98,16 +100,16 @@ class WebScraping
   end
 
   def self.open_wiki(uri)
-    https = Net::HTTP.new(uri.host, uri.port)
-    https.open_timeout = 50
-    https.read_timeout = 50
-    https.use_ssl = true
-    https.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    header = {'User-Agent': 'Mozilla/5.0 (WebAPIClient; Ruby)' }
-    req = Net::HTTP::Get.new(uri.request_uri, header)
+    session = Net::HTTP.new(uri.host, uri.port)
+    session.open_timeout = 50
+    session.read_timeout = 50
+    session.use_ssl = true
+    session.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    req = Net::HTTP::Get.new(uri.request_uri, REQUEST_HEADER)
 
     begin
-      res = https.start {|http| http.request(req) }
+      res = session.start {|ss| ss.request(req) }
 
       case res
       when Net::HTTPSuccess
@@ -173,8 +175,7 @@ class WebScraping
       session.verify_mode = OpenSSL::SSL::VERIFY_NONE
     end
 
-    header = {'User-Agent': 'Mozilla/5.0 (WebAPIClient; Ruby)' }
-    req = Net::HTTP::Get.new(uri.request_uri, header)
+    req = Net::HTTP::Get.new(uri.request_uri, REQUEST_HEADER)
 
     begin
       res = session.start {|ss| ss.request(req) }
