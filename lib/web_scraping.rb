@@ -17,7 +17,6 @@ class WebScraping
       "(Oldies|Classic rock|Classic hits)",
        Regexp::IGNORECASE
     )
-
   RE_LICENSEE =
     Regexp.compile(
       "(CC Licenses|Capstar TX|Citicasters|AMFM Broadcasting)",
@@ -31,6 +30,14 @@ class WebScraping
   RE_FORBIDDEN_URL1 = Regexp.compile("http(s)?:\/\/www.iheart.com")
   RE_FORBIDDEN_URL2 = Regexp.compile("http(s)?:\/\/player.radio.com")
 
+  RE_POPUP =
+    Regexp.compile("\\Ahttp(s)?:\/\/([\\w-]+\\.)+([\\w-]+\/)+popup\\z")
+
+  RE_LISTEN_LIVE =
+    Regexp.compile("Listen[ |\-]?Live", Regexp::IGNORECASE)
+  RE_URI =
+    Regexp.compile("\\A#{URI::regexp(%w(http https))}\\z", Regexp::IGNORECASE)
+
   RE_URL1 = Regexp.compile("http(s)?:\/\/v5.player.abacast.com")
   RE_URL2 = Regexp.compile("http(s)?:\/\/player.streamtheworld.com")
   RE_URL3 = Regexp.compile("http(s)?:\/\/player.radioloyalty.com")
@@ -39,6 +46,7 @@ class WebScraping
   RE_URL6 = Regexp.compile("http(s)?:\/\/player.fullviewplayer.com/")
   RE_URL7 = Regexp.compile("http(s)?:\/\/ca3.radioboss.fm/proxy/")
   RE_URL8 = Regexp.compile("http(s)?:\/\/cjuv.streamon.fm/")
+  RE_URL9 = Regexp.compile("http(s)?:\/\/ice6.securenetsystems.net/")
 
   def self.get_html_docu(url)
     begin
@@ -138,7 +146,8 @@ class WebScraping
     if RE_URL1 === webcast || RE_URL2 === webcast ||
       RE_URL3 === webcast || RE_URL4 === webcast ||
       RE_URL5 === webcast || RE_URL6 === webcast ||
-      RE_URL7 === webcast || RE_URL8 === webcast
+      RE_URL7 === webcast || RE_URL8 === webcast ||
+      RE_URL9 === webcast
       return true
     end
     return false
@@ -146,9 +155,7 @@ class WebScraping
 
   def self.check_access_err?(url, limit = 10)
     raise ArgumentError, "HTTP redirect too deep" if limit == 0
-
-    re_popup = /\Ahttp(s)?:\/\/([\w-]+\.)+([\w-]+\/)+popup\z/
-    url = url + '/' if re_popup === url
+    url = url + '/' if RE_POPUP === url
 
     u = URI.parse(url)
     param = {
@@ -211,17 +218,13 @@ class WebScraping
   def self.get_webcast_url(website_url)
     webcast_url = nil
 
-    re1 = Regexp.compile("Listen[ |\-]?Live", Regexp::IGNORECASE)
-    re2 =
-      Regexp.compile("\A#{URI::regexp(%w(http https))}\z", Regexp::IGNORECASE)
-
     docu = get_html_docu(website_url)
 
     if !docu.nil?
       docu.xpath('//a').each do |element|
         href = element.xpath('@href').to_s
-        if re1 === element.text &&
-           re2 === href && !check_forbidden_url?(href)
+        if RE_LISTEN_LIVE === element.text &&
+          RE_URI === href && !check_forbidden_url?(href)
           webcast_url = href
           break
         end
@@ -241,12 +244,14 @@ class WebScraping
       return nil if iframe_src.empty?
 
       img_docu = get_html_docu(iframe_src.to_s)
+      return nil if img_docu.nil?
     end
 
-    webcast_img =
-      img_docu.xpath('/html/head/meta[@property="og:image"]/@content').to_s
+    og_image =
+      img_docu.xpath('/html/head/meta[@property="og:image"]/@content')
+    return nil if og_image.empty?
 
-    return webcast_img
+    return og_image.to_s
   end
 
   def self.get_station_info(callsign)
@@ -258,26 +263,26 @@ class WebScraping
     ref = open_wiki(uri)
     return bad_station_info if ref.nil?
 
-    ref = ref.gsub('<br />', ', ')
-    docu = Nokogiri::HTML.parse(ref, nil, 'UTF-8')
+    ref = ref.gsub("<br />", ", ")
+    docu = Nokogiri::HTML.parse(ref, nil, "UTF-8")
 
     city, branding, station_format = nil, nil, nil
     webcast_ary, website_ary = [], []
     docu.xpath('//table[@class="infobox vcard"]/tbody/tr[position()>1]')
       .each do |element|
       case element.xpath('.//th').text
-      when 'City'
+      when "City"
         city = element.xpath('.//td').text
-      when 'Branding'
+      when "Branding"
         branding = element.xpath('.//td').text
-      when 'Format'
+      when "Format"
         station_format = element.xpath('.//td').text
-      when 'Webcast'
+      when "Webcast"
         context_node = element.xpath('.//td')
         context_node.xpath('.//a[position()>0]').each do |a|
           webcast_ary << a.xpath('.//@href').to_s
         end
-      when 'Website'
+      when "Website"
         context_node = element.xpath('.//td')
         context_node.xpath('.//a[position()>0]').each do |a|
           website_ary << a.xpath('.//@href').to_s
@@ -317,7 +322,9 @@ class WebScraping
       end
     end
 
+    webcast_img = nil
     skip_station_info = {isvalid: nil}
+
     if webcast_url.nil?
       return skip_station_info
     else
@@ -325,10 +332,10 @@ class WebScraping
         return bad_station_info
       elsif check_url?(webcast_url) || check_access_err?(webcast_url)
         return skip_station_info
+      else
+        webcast_img = get_webcast_img(webcast_url)
       end
     end
-
-    webcast_img = get_webcast_img(webcast_url)
 
     good_station_info = {
       isvalid: true,
