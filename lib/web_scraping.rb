@@ -7,7 +7,9 @@ require 'timeout'
 require 'uri'
 
 class WebScraping
-  REQUEST_HEADER = {"User-Agent": "Mozilla/5.0 (WebAPIClient; Ruby)" }
+  UA_WIKI = "Mozilla/5.0 (WebAPIClient; Ruby)"
+  UA_SITE = "Mozilla/5.0 (X11; Linux x86_64) \
+    AppleWebKit/xxxxxx (KHTML, like Gecko) Chrome/xxxxxx Safari/xxxxx"
 
   WIKIPEDIA_BASE = "https://en.wikipedia.org/wiki/"
 
@@ -53,10 +55,16 @@ class WebScraping
   def self.get_html_docu(url)
     begin
       charset = nil
-      html = open(url, allow_redirections: :all) do |f|
+
+      opt = {}
+      opt["User-Agent"] = UA_SITE
+      opt[:allow_redirections] = :all
+
+      html = open(url, opt) do |f|
         charset = f.charset
         f.read
       end
+
       docu = Nokogiri::HTML.parse(html, nil, charset)
 
     rescue OpenURI::HTTPError # Such as 403:Forbidden
@@ -106,7 +114,9 @@ class WebScraping
     session.use_ssl = true
     session.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-    req = Net::HTTP::Get.new(uri.request_uri, REQUEST_HEADER)
+    opt = {}
+    opt["User-Agent"] = UA_WIKI
+    req = Net::HTTP::Get.new(uri.request_uri, opt)
 
     begin
       res = session.start {|ss| ss.request(req) }
@@ -175,7 +185,9 @@ class WebScraping
       session.verify_mode = OpenSSL::SSL::VERIFY_NONE
     end
 
-    req = Net::HTTP::Get.new(uri.request_uri, REQUEST_HEADER)
+    opt = {}
+    opt["User-Agent"] = UA_SITE
+    req = Net::HTTP::Get.new(uri.request_uri, opt)
 
     begin
       res = session.start {|ss| ss.request(req) }
