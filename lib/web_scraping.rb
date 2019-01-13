@@ -55,7 +55,7 @@ class WebScraping
   RE_URL6 = Regexp.compile("http(s)?:\/\/player.fullviewplayer.com/")
   RE_URL7 = Regexp.compile("http(s)?:\/\/ca3.radioboss.fm/proxy/")
   RE_URL8 = Regexp.compile("http(s)?:\/\/cjuv.streamon.fm/")
-  RE_URL9 = Regexp.compile("http(s)?:\/\/ice6.securenetsystems.net/")
+  RE_URL9 = Regexp.compile("http(s)?:\/\/ice([0-9]+).securenetsystems.net/")
 
   def self.get_html_docu(url)
     begin
