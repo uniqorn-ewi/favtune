@@ -1,5 +1,6 @@
 require 'json'
 require 'net/http'
+require 'net/protocol'
 require 'open-uri'
 require 'openssl'
 require 'socket'
@@ -33,6 +34,10 @@ class WebScraping
 
   RE_FORBIDDEN_URL1 = Regexp.compile("http(s)?:\/\/www.iheart.com")
   RE_FORBIDDEN_URL2 = Regexp.compile("http(s)?:\/\/player.radio.com")
+  RE_FORBIDDEN_URL3 =
+    Regexp.compile("http(s)?:\/\/streamdb1web.securenetsystems.net")
+  RE_FORBIDDEN_URL4 =
+    Regexp.compile("http(s)?:\/\/streamdb2web.securenetsystems.net")
 
   RE_POPUP =
     Regexp.compile("\\Ahttp(s)?:\/\/([\\w-]+\\.)+([\\w-]+\/)+popup\\z")
@@ -141,7 +146,8 @@ class WebScraping
   end
 
   def self.check_forbidden_url?(webcast)
-    if RE_FORBIDDEN_URL1 === webcast || RE_FORBIDDEN_URL2 === webcast
+    if RE_FORBIDDEN_URL1 === webcast || RE_FORBIDDEN_URL2 === webcast ||
+      RE_FORBIDDEN_URL3 === webcast || RE_FORBIDDEN_URL4 === webcast
       return true
     end
     return false
@@ -174,22 +180,27 @@ class WebScraping
       scheme: u.scheme, host: u.host, port: u.port,
       path: u.path, query: u.query
     }
-    uri = URI::HTTP.build(param)
-
-    session = Net::HTTP.new(uri.host, uri.port)
-    session.open_timeout = 30
-    session.read_timeout = 30
-
-    if uri.scheme.eql?('https') || uri.port == 443
-      session.use_ssl = true
-      session.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    end
-
-    opt = {}
-    opt["User-Agent"] = UA_SITE
-    req = Net::HTTP::Get.new(uri.request_uri, opt)
 
     begin
+      uri = URI::HTTP.build(param)
+      session = Net::HTTP.new(uri.host, uri.port)
+      session.open_timeout = 5
+      session.read_timeout = 5
+
+      if uri.scheme.eql?('https') || uri.port == 443
+        session.use_ssl = true
+        session.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        cert = session.start {|ss| ss.peer_cert }
+        diff = cert.not_after.gmtime - Time.now.gmtime
+        if diff <= 0.0
+          raise OpenSSL::X509::CertificateError, "Expired!"
+        end
+      end
+
+      opt = {}
+      opt["User-Agent"] = UA_SITE
+      req = Net::HTTP::Get.new(uri.request_uri, opt)
       res = session.start {|ss| ss.request(req) }
 
       case res
@@ -207,7 +218,13 @@ class WebScraping
         check = true
       end
 
+    rescue URI::InvalidComponentError
+      check = true
     rescue SocketError              #Server Not Found
+      check = true
+    rescue Net::OpenTimeout
+      check = true
+    rescue Net::ReadTimeout
       check = true
     rescue Net::HTTPError           #HTTP code:1xx
       check = true
@@ -220,6 +237,10 @@ class WebScraping
     rescue Timeout::Error
       check = true
     rescue EOFError
+      check = true
+    rescue OpenSSL::X509::CertificateError
+      check = true
+    rescue ArgumentError
       check = true
     rescue => e
       raise e
