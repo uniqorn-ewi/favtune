@@ -12,8 +12,6 @@ class WebScraping
   UA_SITE = "Mozilla/5.0 (X11; Linux x86_64) \
     AppleWebKit/xxxxxx (KHTML, like Gecko) Chrome/xxxxxx Safari/xxxxx"
 
-  WIKIPEDIA_BASE = "https://en.wikipedia.org/wiki/"
-
   WIKIPEDIA_API =
     "https://en.wikipedia.org/w/api.php?action=parse&format=json&page="
 
@@ -88,12 +86,16 @@ class WebScraping
   end
 
   def self.get_callsigns(state_or_province)
+    return nil if state_or_province.nil? || state_or_province.empty?
+
+    uri =
+      URI.parse(
+        WIKIPEDIA_API + 'List_of_radio_stations_in_' + state_or_province
+      )
+    ref = open_wiki(uri)
+    docu = Nokogiri::HTML.parse(ref, nil, "UTF-8")
+
     ary = []
-
-    url =
-      WIKIPEDIA_BASE + 'List_of_radio_stations_in_' + state_or_province
-    docu = get_html_docu(url)
-
     docu.xpath('//table[@class="wikitable sortable"]/tbody/tr[position()>1]')
       .each do |element|
 
@@ -293,7 +295,7 @@ class WebScraping
 
     bad_station_info = {isvalid: false}
 
-    uri = URI.parse(WIKIPEDIA_API + "#{callsign}")
+    uri = URI.parse(WIKIPEDIA_API + callsign)
     ref = open_wiki(uri)
     return bad_station_info if ref.nil?
 
