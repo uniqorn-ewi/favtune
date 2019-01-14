@@ -2,14 +2,12 @@ require 'csv'
 
 path_csv = "db/invalid_radio_stations.csv"
 CSV.foreach(path_csv, headers: true) do |row|
-  c = Callsign.find_by(spelling: row['spelling'])
-  c.update(isvalid: false)
+  Callsign.find_by(spelling: row['spelling']).update(isvalid: false)
 end
 
 path_tsv = "db/radio_stations.tsv"
 CSV.foreach(path_tsv, col_sep: "\t", quote_char: '"', headers: true) do |row|
-  c = Callsign.find_by(spelling: row['callsign'])
-  c.update(isvalid: true)
+  Callsign.find_by(spelling: row['callsign']).update(isvalid: true)
 
   RadioStation.create(
     callsign:       row['callsign'],
