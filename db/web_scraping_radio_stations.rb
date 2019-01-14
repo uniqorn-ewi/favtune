@@ -1,45 +1,41 @@
+require 'csv'
 
-
+user_id ='1'
 headers =
-  ['"callsign"','"city"','"branding"','"station_format"',
-   '"webcast_url"','"webcast_img"','"website"','"comment"','"user_id"']
-headers = headers.join("\t")
+  ["callsign","city","branding","station_format",
+   "webcast_url","webcast_img","website","comment","user_id"]
+columns = nil
 
+path_csv = "db/invalid_radio_stations.csv"
+path_tsv = "db/radio_stations.tsv"
 
-columns = []
-File.open("db/radio_stations.tsv", "w") do |f|
-  f.puts "#{headers}"
+CSV.open(path_tsv, "w", col_sep: "\t", force_quotes: true) do |tsv|
+  f_csv = File.open(path_csv, "w")
+  f_csv.puts "spelling"
 
-  columns =
-    ['"KAMP-FM"','"CBS Radio East"','"LLC"','"Classic rock"',
-     '"http://player.radio.com/listen/station/channel-q"',
-     '""',
-     '"http://amp.radio.com"',
-     '""',
-     '"1"']
-  columns = columns.join("\t")
-  columns = columns.tr("#", "\n")
-  f.puts "#{columns}"
+  tsv << headers
 
-  columns =
-    ['"KFXM-LP"','"reservation"','"Cultivation of Radio"','"Oldies"',
-     '"http://www.nwrnetwork.com/listen/player.asp?station=kfxm-fm"',
-     '"http://www.christiannetcast.com/images/christiannetcast_400.png"',
-     '"http://www.kfxm.com/"',
-     '"KFXM-LP Webstream URL#http://ic1.nwrnetwork.com/kfxm-fm.m3u"',
-     '"1"']
-  columns = columns.join("\t")
-  columns = columns.tr("#", "\n")
-  f.puts "#{columns}"
+  callsigns = Callsign.select("spelling").order(:id)
+  callsigns.each do | callsign |
+    info = WebScraping.get_station_info(callsign.spelling)
 
-  columns =
-    ['"KBOV"','"Great Country"','"Inc"','"Oldies"',
-     '"http://www.mainstreamnetwork.com/listen/player.asp?station=kibs-fm"',
-     '"http://www.mainstreamnetwork.com/images/mainstreamnetwork_200.jpg"',
-     '"http://www.kibskbov.com"',
-     '""',
-     '"1"']
-  columns = columns.join("\t")
-  columns = columns.tr("#", "\n")
-  f.puts "#{columns}"
-end
+    if info[:isvalid].nil?
+      next
+    elsif info[:isvalid]
+      comment = info[:comment]
+      comment = comment.tr("#", "\n") unless comment.nil?
+      columns = [
+        info[:callsign], info[:city], info[:branding], info[:station_format],
+        info[:webcast_url], info[:webcast_img], info[:website_url],
+        comment, user_id
+      ]
+      tsv << columns
+    else
+      f_csv.puts "#{callsign.spelling}"
+    end
+
+    sleep 0.5
+  end
+
+  f_csv.close
+end # close path_tsv
