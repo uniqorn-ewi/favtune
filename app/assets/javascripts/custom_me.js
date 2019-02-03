@@ -89,8 +89,8 @@ var wikipediaHTMLResult = function(data) {
 
 function callWikipediaAPI(wikipediaPage) {
   $.getJSON(
-    'http://en.wikipedia.org/w/api.php?action=parse&format=json&callback=?',
-    {page:wikipediaPage, prop:'text|images', uselang:'en'}, 
+    'https://en.wikipedia.org/w/api.php?action=parse&format=json&callback=?',
+    {page:wikipediaPage, prop:'text|images', uselang:'en'},
     wikipediaHTMLResult);
 }
 
