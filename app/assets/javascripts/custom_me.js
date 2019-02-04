@@ -4,7 +4,8 @@ function setMsg(ajaxMsg) {
 }
 
 var wikipediaHTMLResult = function(data) {
-  var readData = $('<div>' + data.parse.text["*"] + '</div>');
+  var ref = data.parse.text["*"].replace(/<br \/>/g,  ', ')
+  var readData = $('<div>' + ref + '</div>');
 
   // handle redirects
   var redirect = readData.find('li:contains("REDIRECT") a').text();
@@ -40,10 +41,10 @@ var wikipediaHTMLResult = function(data) {
       format = $(this).find('td').text();
     }
     else if($(this).find('th').text() == 'Webcast') {
-      webcast = $(this).find('td').find('a').attr('href');
+      webcast = $(this).find('td').find('a').first().attr('href');
     }
     else if($(this).find('th').text() == 'Website') {
-      website = $(this).find('a').attr('href');
+      website = $(this).find('td').find('a').first().attr('href');
     }
   });
 
