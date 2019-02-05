@@ -9,9 +9,6 @@ class DeleteRadioStationService
   attr_reader :radio_station
 
   def call
-  # return false unless @radio_station
-  # p @radio_station
-
     Callsign.transaction do
       callsign =
         Callsign.lock.find_by(spelling: @radio_station.callsign)
