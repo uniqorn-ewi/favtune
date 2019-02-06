@@ -2,9 +2,9 @@ class RadioStation < ApplicationRecord
   validates(
     :callsign,
     presence: true,
-    length: { maximum: 7 },
-    format: { with: /\A([A-Z]|[A-Z]{2})[A-Z]{1,3}[\-]?[A-Z0-9]{0,3}\z/ },
-    uniqueness: { case_sensitive: false }
+    length: { maximum: 20 },
+    format: { with: /\A[C|K|V|W]{1}[A-Z]{2,3}[_|\-]?[(]?([A-Za-z_]+)?[)]?\z/ },
+    uniqueness: { case_sensitive: true }
   )
   validates(
     :webcast_url,
@@ -12,6 +12,12 @@ class RadioStation < ApplicationRecord
     length: { maximum: 255 },
     format: /\A#{URI::regexp(%w(http https))}\z/,
     uniqueness: { case_sensitive: false }
+  )
+  validates(
+    :website,
+    presence: true,
+    length: { maximum: 255 },
+    format: /\A#{URI::regexp(%w(http https))}\z/
   )
   belongs_to :user
   has_many :favorites, dependent: :destroy
