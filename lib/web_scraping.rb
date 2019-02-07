@@ -251,6 +251,25 @@ class WebScraping
     return check
   end
 
+  def self.invalid_website?(site_url)
+    if site_url.nil? || site_url.empty? ||
+      check_access_err?(site_url)
+      return true
+    end
+    return false
+  end
+
+  def self.invalid_webcast?(cast_url)
+    if cast_url.nil? || cast_url.empty? ||
+      check_forbidden_url?(cast_url) ||
+      check_stream_url?(cast_url) ||
+      check_url?(cast_url) ||
+      check_access_err?(cast_url)
+      return true
+    end
+    return false
+  end
+
   def self.get_webcast_url(website_url)
     webcast_url = nil
 
