@@ -17,6 +17,16 @@
           </div>
           <% end %>
 
+          <% if flash.any? %>
+          <div id="error_explanation">
+            <ul>
+              <% flash.each do |key, value| %>
+              <%= content_tag(:li, value, class: "#{key}") %>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">

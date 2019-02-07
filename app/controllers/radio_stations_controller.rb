@@ -26,13 +26,24 @@ class RadioStationsController < ApplicationController
 
   def create
     @radio_station = RadioStation.new(radio_station_params)
-    if @radio_station.save
-      redirect_to(
-        root_path,
-        notice: "Radio station info was successfully created."
-      )
-    else
+
+    if WebScraping.invalid_website?(@radio_station.website)
+      flash.now[:danger] = "Invalid web site!"
       render :new
+    elsif WebScraping.invalid_webcast?(@radio_station.webcast_url)
+      flash.now[:danger] = "Invalid webcast url!"
+      render :new
+    else
+      @radio_station.webcast_img =
+        WebScraping.get_webcast_img(@radio_station.webcast_url)
+      if CreateRadioStationService.call(@radio_station)
+        redirect_to(
+          root_path,
+          notice: "Radio station info was successfully created."
+        )
+      else
+        render :new
+      end
     end
   end
 
@@ -45,18 +56,30 @@ class RadioStationsController < ApplicationController
   end
 
   def update
-    if @radio_station.update(radio_station_params)
-      redirect_to(
-        radio_stations_path,
-        notice: "Radio station info was successfully updated."
-      )
-    else
+    edit_params = radio_station_params.to_hash
+
+    if WebScraping.invalid_website?(edit_params['website'])
+      flash.now[:danger] = "Invalid web site!"
       render :edit
+    elsif WebScraping.invalid_webcast?(edit_params['webcast_url'])
+      flash.now[:danger] = "Invalid webcast url!"
+      render :edit
+    else
+      edit_params['webcast_img'] =
+        WebScraping.get_webcast_img(edit_params['webcast_url'])
+      if @radio_station.update(edit_params)
+        redirect_to(
+          radio_stations_path,
+          notice: "Radio station info was successfully updated."
+        )
+      else
+        render :edit
+      end
     end
   end
 
   def destroy
-    @radio_station.destroy
+    DeleteRadioStationService.call(@radio_station)
     redirect_to(
       radio_stations_path,
       notice: "Radio station info was successfully destroyed."
