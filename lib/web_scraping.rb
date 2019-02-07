@@ -8,52 +8,52 @@ require 'timeout'
 require 'uri'
 
 class WebScraping
-  UA_WIKI = "Mozilla/5.0 (WebAPIClient; Ruby)"
-  UA_SITE = "Mozilla/5.0 (X11; Linux x86_64) \
-    AppleWebKit/xxxxxx (KHTML, like Gecko) Chrome/xxxxxx Safari/xxxxx"
+  UA_WIKI = %(Mozilla/5.0 (WebAPIClient; Ruby))
+  UA_SITE = %(Mozilla/5.0 (X11; Linux x86_64) \
+    AppleWebKit/xxxxxx (KHTML, like Gecko) Chrome/xxxxxx Safari/xxxxx)
 
   WIKIPEDIA_API =
-    "https://en.wikipedia.org/w/api.php?action=parse&format=json&page="
+    %(https://en.wikipedia.org/w/api.php?action=parse&format=json&page=)
 
   RE_FORMAT =
     Regexp.compile(
-      "(Oldies|Classic rock|Classic hits)",
+      %((Oldies|Classic rock|Classic hits)),
        Regexp::IGNORECASE
     )
   RE_LICENSEE =
     Regexp.compile(
-      "(CC Licenses|Capstar TX|Citicasters|AMFM Broadcasting)",
+      %((CC Licenses|Capstar TX|Citicasters|AMFM Broadcasting)),
        Regexp::IGNORECASE
     )
 
-  RE_STREAM_URL1 = Regexp.compile("(\.pls|\.m3u|\.asx)")
+  RE_STREAM_URL1 = Regexp.compile(%((\.pls|\.m3u|\.asx)))
   RE_STREAM_URL2 =
-    Regexp.compile("http(s)?:\/\/([\\w-]+\\.)+[\\w-]+(:[0-9]+)+(\/)?")
+    Regexp.compile(%(http(s)?:\/\/([\\w-]+\\.)+[\\w-]+(:[0-9]+)+(\/)?))
 
-  RE_FORBIDDEN_URL1 = Regexp.compile("http(s)?:\/\/www.iheart.com")
-  RE_FORBIDDEN_URL2 = Regexp.compile("http(s)?:\/\/player.radio.com")
+  RE_FORBIDDEN_URL1 = Regexp.compile(%(http(s)?:\/\/www.iheart.com))
+  RE_FORBIDDEN_URL2 = Regexp.compile(%(http(s)?:\/\/player.radio.com))
   RE_FORBIDDEN_URL3 =
-    Regexp.compile("http(s)?:\/\/streamdb1web.securenetsystems.net")
+    Regexp.compile(%(http(s)?:\/\/streamdb1web.securenetsystems.net))
   RE_FORBIDDEN_URL4 =
-    Regexp.compile("http(s)?:\/\/streamdb2web.securenetsystems.net")
+    Regexp.compile(%(http(s)?:\/\/streamdb2web.securenetsystems.net))
 
   RE_POPUP =
-    Regexp.compile("\\Ahttp(s)?:\/\/([\\w-]+\\.)+([\\w-]+\/)+popup\\z")
+    Regexp.compile(%(\\Ahttp(s)?:\/\/([\\w-]+\\.)+([\\w-]+\/)+popup\\z))
 
   RE_LISTEN_LIVE =
-    Regexp.compile("Listen[ |\-]?Live", Regexp::IGNORECASE)
+    Regexp.compile(%(Listen[ |\-]?Live), Regexp::IGNORECASE)
   RE_URI =
-    Regexp.compile("\\A#{URI::regexp(%w(http https))}\\z", Regexp::IGNORECASE)
+    Regexp.compile(%(\\A#{URI::regexp(%w(http https))}\\z), Regexp::IGNORECASE)
 
-  RE_URL1 = Regexp.compile("http(s)?:\/\/v5.player.abacast.com")
-  RE_URL2 = Regexp.compile("http(s)?:\/\/player.streamtheworld.com")
-  RE_URL3 = Regexp.compile("http(s)?:\/\/player.radioloyalty.com")
-  RE_URL4 = Regexp.compile("http(s)?:\/\/globecasting.us:8000/")
-  RE_URL5 = Regexp.compile("http(s)?:\/\/freestreams.alldigital.net:8000/")
-  RE_URL6 = Regexp.compile("http(s)?:\/\/player.fullviewplayer.com/")
-  RE_URL7 = Regexp.compile("http(s)?:\/\/ca3.radioboss.fm/proxy/")
-  RE_URL8 = Regexp.compile("http(s)?:\/\/cjuv.streamon.fm/")
-  RE_URL9 = Regexp.compile("http(s)?:\/\/ice([0-9]+).securenetsystems.net/")
+  RE_URL1 = Regexp.compile(%(http(s)?:\/\/v5.player.abacast.com))
+  RE_URL2 = Regexp.compile(%(http(s)?:\/\/player.streamtheworld.com))
+  RE_URL3 = Regexp.compile(%(http(s)?:\/\/player.radioloyalty.com))
+  RE_URL4 = Regexp.compile(%(http(s)?:\/\/globecasting.us:8000/))
+  RE_URL5 = Regexp.compile(%(http(s)?:\/\/freestreams.alldigital.net:8000/))
+  RE_URL6 = Regexp.compile(%(http(s)?:\/\/player.fullviewplayer.com/))
+  RE_URL7 = Regexp.compile(%(http(s)?:\/\/ca3.radioboss.fm/proxy/))
+  RE_URL8 = Regexp.compile(%(http(s)?:\/\/cjuv.streamon.fm/))
+  RE_URL9 = Regexp.compile(%(http(s)?:\/\/ice([0-9]+).securenetsystems.net/))
 
   def self.get_html_docu(url)
     begin
@@ -307,18 +307,18 @@ class WebScraping
     docu.xpath('//table[@class="infobox vcard"]/tbody/tr[position()>1]')
       .each do |element|
       case element.xpath('.//th').text
-      when "City"
+      when 'City'
         city = element.xpath('.//td').text
-      when "Branding"
+      when 'Branding'
         branding = element.xpath('.//td').text
-      when "Format"
+      when 'Format'
         station_format = element.xpath('.//td').text
-      when "Webcast"
+      when 'Webcast'
         context_node = element.xpath('.//td')
         context_node.xpath('.//a[position()>0]').each do |a|
           webcast_ary << a.xpath('.//@href').to_s
         end
-      when "Website"
+      when 'Website'
         context_node = element.xpath('.//td')
         context_node.xpath('.//a[position()>0]').each do |a|
           website_ary << a.xpath('.//@href').to_s
@@ -335,7 +335,7 @@ class WebScraping
     return bad_station_info if check_access_err?(website_url)
 
     webcast_url = nil
-    comment = "Stream URL for App like iTunes"
+    comment = %(Stream URL for App like iTunes)
 
     case webcast_ary.size
     when 0
