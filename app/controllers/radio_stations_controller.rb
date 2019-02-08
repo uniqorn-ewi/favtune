@@ -56,17 +56,17 @@ class RadioStationsController < ApplicationController
   end
 
   def update
-    edit_params = radio_station_params.to_hash
+    edit_params = radio_station_params.to_h
 
-    if WebScraping.invalid_website?(edit_params['website'])
+    if WebScraping.invalid_website?(edit_params[:website])
       flash.now[:danger] = "Invalid web site!"
       render :edit
-    elsif WebScraping.invalid_webcast?(edit_params['webcast_url'])
+    elsif WebScraping.invalid_webcast?(edit_params[:webcast_url])
       flash.now[:danger] = "Invalid webcast url!"
       render :edit
     else
-      edit_params['webcast_img'] =
-        WebScraping.get_webcast_img(edit_params['webcast_url'])
+      edit_params[:webcast_img] =
+        WebScraping.get_webcast_img(edit_params[:webcast_url])
       if @radio_station.update(edit_params)
         redirect_to(
           radio_stations_path,
