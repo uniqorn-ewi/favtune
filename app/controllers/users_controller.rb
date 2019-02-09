@@ -45,6 +45,7 @@ class UsersController < ApplicationController
   def destroy
     if @user.id.eql?(current_user.id)
       session.delete(:user_id)
+      ResetCallsignService.call(@user)
       @user.destroy
       redirect_to root_path, notice: "You are not registered as a user."
     else
