@@ -4,7 +4,8 @@ class RadioStationsController < ApplicationController
   before_action :user_has_radio_station, only: %i[ edit destroy ]
 
   def top
-    @radio_station = RadioStation.order(:updated_at).first
+    @radio_station =
+      RadioStation.select(%(id, webcast_url)).order(:updated_at).last
   end
 
   def index
