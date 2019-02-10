@@ -15,24 +15,22 @@
 
 <select class="parent" name="selectParent">
   <option selected="selected" value="">country</option>
-<% countries = Country.order(:id) %>
-<% countries.each do |c| %>
+<% Country.select(%(id, name)).order(:id).each do |c| %>
   <option value="<%= c.id %>"><%= c.name %></option>
 <% end %>
 </select>
 
 <select class="children" name="selectChildren" disabled>
   <option selected="selected" value="">state/province</option>
-<% provinces = Province.order(:id) %>
-<% provinces.each do |p| %>
+<% Province.select(%(id, name, country_id)).order(:id).each do |p| %>
   <option data-val="<%= p.country_id %>" value="<%= p.id %>"><%= p.name %></option>
 <% end %>
 </select>
 
 <select class="grandchilds" name="selectGrandchilds" disabled>
   <option selected="selected" value="">callsign</option>
-<% callsigns = Callsign.where(isvalid: nil).order(:id) %>
-<% callsigns.each do |s| %>
+<% Callsign.select(%(id, spelling, province_id))
+  .where(isvalid: nil).order(:id).each do |s| %>
   <option data-val="<%= s.province_id %>" value="<%= s.spelling %>"><%= s.spelling %></option>
 <% end %>
 </select>
