@@ -1,8 +1,6 @@
 /*
-author: Boostraptheme
-author URL: https://boostraptheme.com
-License: Creative Commons Attribution 4.0 Unported
-License URL: https://creativecommons.org/licenses/by/4.0/
+author: Yuji YAMAMOTO
+License: MIT
 */
 
 /*====================================================
@@ -61,6 +59,7 @@ p {
 
 /*---------------------------------------------------
   agency
+  Copyright 2013-2018 Start Bootstrap
 /*--------------------------------------------------*/
 
 body {
@@ -314,12 +313,6 @@ img::-moz-selection {
         text-align: center;
     }
 
-    #footer-copyrights p a:last-child {
-        border-left: 2px solid #fff;
-        padding-left: 10px;
-        margin-left: 10px;
-    }
-
     .btn-back-to-top {
         position: fixed;
         bottom: 20px;
@@ -378,6 +371,7 @@ img::-moz-selection {
 
 /*====================================================
                        HOME: agency
+  Copyright 2013-2018 Start Bootstrap
 ======================================================*/
 
 textarea.form-control.radio-station {
@@ -487,6 +481,7 @@ div#error_explanation {
 
 /*====================================================
                    sign-up & in: sb-admin
+  Copyright 2013-2018 Start Bootstrap
 ======================================================*/
 
 .card-login {
@@ -499,6 +494,7 @@ div#error_explanation {
 
 /*====================================================
                    user-show: agency
+  Copyright 2013-2018 Start Bootstrap
 ======================================================*/
 
 @media (min-width: 768px) {
