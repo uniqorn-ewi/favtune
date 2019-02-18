@@ -20,8 +20,8 @@
 !/node_modules/font-awesome/.keep
 !/node_modules/jquery/.keep
 
-/vendor/bundle/*
-!/vendor/bundle/.keep
+/vendor/*
+!/vendor/.keep
 
 /yarn-error.log
 
