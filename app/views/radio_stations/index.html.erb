@@ -12,6 +12,7 @@
       </div>
     </div>
 
+    <%= paginate @radio_stations %>
     <div class="row blog-grid">
     <!-- loop for radio_stations -->
     <% @radio_stations.each do |radio_station| %>
@@ -49,6 +50,7 @@
     <% end %>
     <!-- loop for radio_stations -->
     </div>
+    <%= paginate @radio_stations %>
 
   </div>
 </section>

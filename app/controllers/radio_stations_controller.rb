@@ -9,7 +9,8 @@ class RadioStationsController < ApplicationController
   end
 
   def index
-    @radio_stations = RadioStation.order(:updated_at)
+    @radio_stations =
+      RadioStation.order(:updated_at).page(params[:page]).per(30)
   end
 
   def new

@@ -298,11 +298,12 @@ img::-moz-selection {
         bottom: 0;
         position: fixed;
         width: 100%;
+        z-index: 2;
     }
 
     #footer-bottom {
-        background-color: rgba(0, 0, 0, 0.8);
-        padding: 30px 0;
+        background-color: rgb(0, 0, 0);
+        padding: 16px 0;
     }
 
     #footer-copyrights p {
@@ -663,7 +664,7 @@ div#error_explanation {
 
 .probootstrap-section,
 .probootstrap-footer {
-  padding: 3em 0;
+  padding: 3em 0 10em;
   }
   .probootstrap-section .probootstrap-heading,
   .probootstrap-footer .probootstrap-heading {

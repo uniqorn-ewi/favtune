@@ -44,6 +44,8 @@ gem 'open_uri_redirections'
 
 gem 'seed-fu', '~> 2.3'
 
+gem 'kaminari'
+
 group :production do
   gem 'cloudinary'
 end
