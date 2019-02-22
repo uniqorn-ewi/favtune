@@ -6,6 +6,7 @@ class CreateRadioStations < ActiveRecord::Migration[5.1]
       t.string :branding
       t.string :station_format
       t.string :webcast_url
+      t.string :webcast_img
       t.string :website
       t.string :comment
       t.references :user, foreign_key: true
