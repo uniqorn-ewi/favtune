@@ -303,12 +303,12 @@ img::-moz-selection {
 
     #footer-bottom {
         background-color: rgb(0, 0, 0);
-        padding: 16px 0;
+        padding: 0px 0 8px;
     }
 
     #footer-copyrights p {
         margin: 0;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: normal;
         color: #bbb;
         text-align: center;
