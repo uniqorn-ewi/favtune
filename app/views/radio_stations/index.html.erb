@@ -34,7 +34,7 @@
                   <a href="<%= radio_station_path(radio_station.id) %>">
                     <i class="fa fa-clock-o"></i> <%= radio_station.updated_at %></a>
                 </li>
-                <% if logged_in? && radio_station.user_id == current_user.id %>
+                <% if signed_in? && radio_station.user_id == current_user.id %>
                 <li><%= link_to 'Edit',
                       edit_radio_station_path(radio_station.id) %>
                 </li>

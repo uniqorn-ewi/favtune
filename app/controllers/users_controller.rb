@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :logged_in_user, only: %i[ edit show destroy ]
+  before_action :signed_in_user, only: %i[ edit show destroy ]
 
   def new
     if params[:back]
@@ -61,9 +61,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(
         :name, :email, :password, :password_confirmation)
-    end
-
-    def logged_in_user
-      redirect_to new_session_path unless logged_in?
     end
 end

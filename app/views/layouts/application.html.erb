@@ -21,7 +21,7 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-          <% if logged_in? %>
+          <% if signed_in? %>
             <li class="nav-item">
               <%= link_to "Shared stations", radio_stations_path, class: 'nav-link' %>
             </li>

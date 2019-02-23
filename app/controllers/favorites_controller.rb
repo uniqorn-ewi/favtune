@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :logged_in_user, only: [:destroy]
+  before_action :signed_in_user, only: [:destroy]
   before_action :set_favorite_user_id, only: [:destroy]
 
   def create
@@ -23,10 +23,6 @@ class FavoritesController < ApplicationController
   end
 
   private
-    def logged_in_user
-      redirect_to new_session_path unless logged_in?
-    end
-
     def set_favorite_user_id
       @favorite_user_id =
         Favorite.find_by(radio_station_id: params[:id]).user_id

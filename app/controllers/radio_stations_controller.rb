@@ -1,6 +1,6 @@
 class RadioStationsController < ApplicationController
   before_action :set_radio_station, only: %i[ show edit update destroy ]
-  before_action :logged_in_user, only: %i[ new edit show destroy ]
+  before_action :signed_in_user, only: %i[ new edit show destroy ]
   before_action :user_has_radio_station, only: %i[ edit destroy ]
 
   def top
@@ -105,10 +105,6 @@ class RadioStationsController < ApplicationController
           :website,
           :comment
         )
-    end
-
-    def logged_in_user
-      redirect_to new_session_path unless logged_in?
     end
 
     def user_has_radio_station

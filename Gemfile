@@ -62,6 +62,7 @@ group :development, :test do
 
   # pryをRailsコンソールで使用
   gem 'pry-rails'
+  gem 'pry-byebug'
 
   # Hirb （データを表形式で表示）
   gem 'hirb'
