@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
-  root to: 'radio_stations#top'
+  root   'radio_stations#top'
+
+  get    '/signup',   to: 'users#new'
+
+  get    '/signin',   to: 'sessions#new'
+  post   '/signin',   to: 'sessions#create'
+  delete '/signout',  to: 'sessions#destroy'
 
   resources :radio_stations do
     collection do
       post :confirm
     end
   end
-
-  resources :sessions, only: %i[ new create destroy ]
 
   resources :users do
     collection do

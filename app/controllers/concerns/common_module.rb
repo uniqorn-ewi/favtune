@@ -2,7 +2,7 @@ module CommonModule
   extend ActiveSupport::Concern
 
   def signed_in_user
-    redirect_to new_session_path unless signed_in?
+    redirect_to signin_path unless signed_in?
   end
 
   included do

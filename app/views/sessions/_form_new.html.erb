@@ -13,7 +13,7 @@
     <% end %>
 
     <!-- form -->
-    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+    <%= form_with(scope: :session, url: signin_path, local: true) do |f| %>
       <div class="form-group">
         <%= f.label :email, 'Email address' %>
         <%= f.email_field :email, aria: {describedby: 'emailHelp'},

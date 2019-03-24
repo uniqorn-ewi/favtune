@@ -26,7 +26,7 @@
 
     <div class="text-center">
       <%= form_with(
-        model: user, url: new_user_path, local: true, method: 'get'
+        model: user, url: signup_path, local: true, method: 'get'
       ) do |f| %>
         <%= f.hidden_field :name %>
         <%= f.hidden_field :email %>
