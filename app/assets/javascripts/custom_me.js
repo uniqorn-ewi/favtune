@@ -127,6 +127,11 @@ $(document).on({
     var originChildren = $children.html();
     //親のselect要素が変更になるとイベントが発生
     $('.parent').change(function() {
+      //エラー表示されていた場合
+      if ($('div').is('#error_explanation')) {
+	//表示箇所を削除
+        $('#error_explanation').remove();
+      }
       //選択された親のvalueを取得し変数に入れる
       var val1 = $(this).val();
       //削除された要素をもとに戻すため.子の元の内容を入れておく
