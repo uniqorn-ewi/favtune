@@ -346,7 +346,8 @@ class WebScraping
       end
     end
 
-    if !(RE_FORMAT === station_format) || website_ary.size == 0
+    if website_ary.size == 0 ||
+      station_format.nil? || !(RE_FORMAT === station_format)
       return bad_station_info
     end
 

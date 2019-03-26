@@ -3,8 +3,14 @@ class RadioStation < ApplicationRecord
     :callsign,
     presence: true,
     length: { maximum: 20 },
-    format: { with: /\A[C|K|V|W]{1}[A-Z]{2,3}[_|\-]?[(]?([A-Za-z_]+)?[)]?\z/ },
+    format: /\A[C|K|V|W]{1}[A-Z]{2,3}[_|\-]?[(]?([A-Za-z_]+)?[)]?\z/,
     uniqueness: { case_sensitive: true }
+  )
+  validates(
+    :station_format,
+    presence: true,
+    length: { maximum: 80 },
+    format: /\A[\x20-\x7e]+\z/
   )
   validates(
     :webcast_url,
