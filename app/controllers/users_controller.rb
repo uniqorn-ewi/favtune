@@ -19,7 +19,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       NotifyMailer.notify_mail(@user).deliver
-      redirect_to root_path, notice: "An e-mail of invitation was sent to you."
+      redirect_to(
+        root_path,
+        notice: "Please check your email to activate your account."
+      )
     else
       redirect_to root_path, notice: "Error..."
     end

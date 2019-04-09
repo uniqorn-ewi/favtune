@@ -3,7 +3,6 @@ class NotifyMailer < ApplicationMailer
 
   def notify_mail(user)
     @user = user
-    @url  = 'https://favtune.herokuapp.com'
-    mail to: "#{@user.email}", subject: "Favtune Sign Up Done!"
+    mail to: "#{@user.email}", subject: "Account activation"
   end
 end
